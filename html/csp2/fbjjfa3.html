@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title>联系intel</title>
+    <style>
+
+        .aui-row .aui-col-xs-4 , .aui-row .aui-col-xs-5{
+            height: 2.5rem;
+            line-height: 2.5rem;
+            padding-left: 0.75rem;
+        }
+        .aui-row .aui-col-xs-9 , .aui-row .aui-col-xs-7{
+            line-height: 2.5rem;
+        }
+        .save-tag{
+            position: absolute;
+            right:0.75rem;
+            top:0.75rem;
+        }
+    </style>
+</head>
+<body>
+     <section>
+     	<!--<div class="aui-tips bg-009ce9-blue" id="tips-1">
+            <i class="aui-iconfont aui-icon-info"></i>
+            <div class="aui-tips-title">消息提示条消息提示条消息提示</div>
+            <i class="aui-iconfont aui-icon-close"></i>
+        </div>-->
+        <div class="aui-card-list">
+            <div class="aui-card-list-content aui-font-size-14">
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-4">标题：</div>
+                    <input style="width:50%;" id="title" name="title" class=" aui-col-xs-9  aui-inline" type="text" placeholder="请输入标题" required/>                    
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-4">姓名：</div>
+                    <input style="width:50%;" id="contact" name="contact" class=" aui-col-xs-9  aui-inline" type="text" placeholder="请输入姓名"  required/>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-4">联系方式：</div>
+                    <input style="width:50%;" id="mobile" name="mobile" class=" aui-col-xs-9  aui-inline" type="text" placeholder="请输入手机号"  required/>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-4">公司名称：</div>
+                    <input style="width:50%;" id="companyname" name="companyname" class=" aui-col-xs-9  aui-inline" type="text" placeholder="请输入公司名称"  required/>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-4">邮箱：</div>
+                    <input style="width:50%;" id="email" name="email" class=" aui-col-xs-9  aui-inline" type="text" placeholder="请输入邮箱"  required/>
+                </div>
+        </div>
+    </section>
+    <div class="aui-crad-list text-808080 mr-top-30 mr-bottom-30">
+        <div class="aui-crad-list-footer aui-text-center font-size-13">
+            <span class="submit-tag bg-009ce9-blue aui-font-size-14" onclick="save()">提交<span>
+        </div>	
+    </div>
+</body>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript" src="../../script/aui-dialog.js"></script>
+<script type="text/javascript">
+	var toast = new auiToast();
+	var dialog = new auiDialog();
+//var token="?access_token=2JFkLwPi5HusOjsk0gjPdSiHe5vGbR2WW1wEgvADocLRVqtMBwgb14vPnlCqCT0N";     
+		var token = "?access_token="+localStorage.getItem('token');
+    //如果未登录直接跳登录页
+	if(!localStorage.getItem('token')){
+		window.location.href = BASE_URL+'/html/register/csp_register.html';
+	}
+    $(function() {
+		var contact=localStorage.getItem('user_contact');
+		var mobile=localStorage.getItem('user_mobile');
+		var companyname=localStorage.getItem('user_companyname');
+		var email=localStorage.getItem('user_email');
+		if(contact){
+			$('#contact').val(contact);
+		}
+		if(mobile){
+			$('#mobile').val(mobile);
+		}
+		if(companyname){
+			$('#companyname').val(companyname);
+		}
+		if(email){
+			$('#email').val(email);
+		}
+    });
+    function save(){
+    	var formData = {}; // 定义提交对象
+        $('[name]').each(function(){ // 遍历所有带字段名的 textarea
+            formData['' + $(this).attr("name") + ''] = $(this).val(); //赋值
+        });
+        //判断是否输入全
+        var formItems=document.querySelectorAll('[required]');
+		//遍历每个含有required的元素，验证其是否为空
+		for(var i=0;i<formItems.length;i++){
+			// 其中如果没有value值并且含required属性
+	           if(!formItems[i].value && formItems[i].required){
+					//获取没有value值的元素的placeholder属性值
+	            	var hint=formItems[i].getAttribute('placeholder');
+					//给出弹框提示
+	               dialog.alert({
+						title:hint,
+						buttons:['好']
+					},function(ret){
+					});
+	               return;//必填的元素没有value值就不往下执行代码
+	           }
+		}
+    	var mobilePartten = /^1[3-9]\d{9}$/;
+		var emailPattern = /[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/;
+		var mobile=$('#mobile').val();
+		var email=$('#email').val();
+		if(!mobilePartten.test(mobile)){
+				toast.fail({
+		            title:'请输入正确的手机号' ,
+		            duration:2000
+		        },function(ret){
+	    		});
+	            return;
+           }
+       if(!emailPattern.test(email)){
+			toast.fail({
+	            title:'请输入正确的邮箱' ,
+	            duration:2000
+	        },function(ret){
+    		});
+            return;
+       }
+       console.log('提交的数据：'+JSON.stringify(formData));
+       toast.loading({
+            title:"正在提交",
+            duration:1000
+        },function(ret){
+        });
+    	$.ajax({
+    		url:INTEL_API_URL_B + '/jyh-newfactresources/postData'+token,
+    		type:'post',
+    		data:formData,
+    		success:function(ret){
+    			console.log(JSON.stringify(ret));
+    			toast.hide();
+    			if(ret.success==true){
+	    			toast.success({
+	                    title:'发布成功'
+	                })
+    			}
+    			setTimeout(function(){
+                	window.history.go(-1);
+                }, 2000);
+    			
+    		},
+    		error:function(err){
+    			toast.hide();
+    			console.log(JSON.stringify(err));
+    			var msg=err.responseJSON.error.message;
+    			toast.fail({
+		            title:msg ,
+		            duration:2000
+		        },function(ret){
+				});
+    		}
+    	})
+    }
+</script>
+</html
