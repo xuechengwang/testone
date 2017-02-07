@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">用户信息</title>
+    <style>
+
+        .aui-row .aui-col-xs-4 , .aui-row .aui-col-xs-5{
+            height: 2.5rem;
+            line-height: 2.5rem;
+            padding-left: 0.75rem;
+        }
+        .aui-row .aui-col-xs-8 , .aui-row .aui-col-xs-7{
+            line-height: 2.5rem;
+        }
+        .save-tag{
+            position: absolute;
+            right:0.75rem;
+            top:0.75rem;
+        }
+    </style>
+</head>
+<body>
+	<section id="list"></section>
+     <!--用户信息页面-->
+ <script type="text/x-dot-template" id="list-tpl">
+     <section>
+        <div class="aui-card-list">
+            <div class="aui-card-list-content aui-font-size-14">
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">公司名称：</div>
+                    <div class="text-666666 aui-col-xs-7">{{=it.companyname||''}}</div>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">营业执照号：</div>
+                    <div class="text-666666 aui-col-xs-7">{{=it.businessnumber||''}}</div>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">税务登记号：</div>
+                    <div class="text-666666 aui-col-xs-7">{{=it.taxregnumber||''}}</div>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">邮寄地址：</div>
+                    <div class="text-666666 aui-col-xs-7">{{=it.postaddress||''}}</div>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">邮编：</div>
+                    <div class="text-666666 aui-col-xs-7">{{=it.zipcode||''}}</div>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">邮箱：</div>
+                    <input style="width:50%;" id="email" class=" aui-col-xs-8  aui-inline" type="text" value="{{=it.email||''}}" required/>
+                    <span class="aui-iconfont aui-icon-pencil save-tag"></span>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">手机号：</div>
+                    <input style="width:50%;" id="mobile" class=" aui-col-xs-8  aui-inline" type="text" placeholder="请输入联系电话" value="{{=it.mobile||''}}" required/>
+                    <span class="text-009ce9 save-tag" onclick="save()">保存<span>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">联系人姓名：</div>
+                    <div class="text-666666 aui-col-xs-7">{{=it.contact||''}}</div>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">区号+座机=分机：</div>
+                    <div class="text-666666 aui-col-xs-7">{{=it.telephone||''}}</div>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">主营业务：</div>
+                    <div class="text-666666 aui-col-xs-7">{{=it.mainbusiness||''}}</div>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">行业：</div>
+                    <div class="text-666666 aui-col-xs-7">{{=it.industry||''}}</div>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">主要经营产品：</div>
+                    <div class="text-666666 aui-col-xs-7">{{=it.mainproducts||''}}</div>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">主要经营品牌：</div>
+                    <div class="text-666666 aui-col-xs-7">{{=it.mainbrand||''}}</div>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">贵公司员工数：</div>
+                    <div class="text-666666 aui-col-xs-7">{{=it.employees||''}}</div>
+                </div>
+                <div class="aui-row aui-border-b">
+                    <div class="text-333333 aui-col-xs-5">贵公司网点数：</div>
+                    <div class="text-666666 aui-col-xs-7">{{=it.netplaces||''}}</div>
+                </div>
+        </div>
+    </section>
+</script>
+</body>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+<script type="text/javascript">
+	var toast = new auiToast();
+//var token="?access_token=2JFkLwPi5HusOjsk0gjPdSiHe5vGbR2WW1wEgvADocLRVqtMBwgb14vPnlCqCT0N";     
+		var token = "?access_token="+localStorage.getItem('token');
+    //如果未登录直接跳登录页
+	if(!localStorage.getItem('token')){
+		window.location.href = BASE_URL+'/html/register/icafe_register.html';
+	}
+    $(function() {
+        getData();
+    });
+    function getData(){
+    	$.ajax({
+    		url:INTEL_API_URL_B + '/users/getCurrentUserInfo'+token,
+    		type:'get',
+    		data:{},
+    		success:function(ret){
+    			console.log(JSON.stringify(ret));
+    			var tempFn = doT.template($('#list-tpl').html());
+                $('#list').append(tempFn(ret));
+    		},
+    		error:function(err){
+    			console.log(JSON.stringify(err));
+    		}
+    	})
+    }
+    function save(){
+    	var mobilePartten = /^1[3-9]\d{9}$/;
+		var emailPattern = /[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,15}\.[a-zA-Z0-9]{1,15}/;
+		var mobile=$('#mobile').val();
+		var email=$('#email').val();
+		if(!mobile){
+			toast.fail({
+	            title:'请输入手机号' ,
+	            duration:2000
+	        },function(ret){
+    		});
+            return;
+		}
+		if(!mobilePartten.test(mobile)){
+				toast.fail({
+		            title:'请输入正确的手机号' ,
+		            duration:2000
+		        },function(ret){
+	    		});
+	            return;
+           }
+       if(!mobile){
+			toast.fail({
+	            title:'请输入邮箱' ,
+	            duration:2000
+	        },function(ret){
+			});
+	        return;
+		}
+       if(!emailPattern.test(email)){
+			toast.fail({
+	            title:'请输入正确的邮箱' ,
+	            duration:2000
+	        },function(ret){
+    		});
+            return;
+       }
+       console.log(mobile);
+       console.log(email);
+       toast.loading({
+            title:"正在提交",
+            duration:1000
+        },function(ret){
+        });
+    	$.ajax({
+    		url:INTEL_API_URL_B + '/users/updateUserInfo'+token,
+    		type:'post',
+    		data:{
+    			mobile:mobile,
+    			email:email
+    		},
+    		success:function(ret){
+    			toast.hide();
+    			if(ret.success==true){
+	    			toast.success({
+	                    title:'保存成功'
+	                })
+    			}
+    			console.log(JSON.stringify(ret));
+    		},
+    		error:function(err){
+    			toast.hide();
+    			console.log(JSON.stringify(err));
+    			var msg=err.responseJSON.error.message;
+    			toast.fail({
+		            title:msg ,
+		            duration:2000
+		        },function(ret){
+				});
+    		}
+    	})
+    }
+</script>
+</html

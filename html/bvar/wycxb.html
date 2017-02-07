@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">我要成学霸</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    
+    <style>
+             section div {
+                height: 2.5rem;
+                line-height: 2.5rem;
+                border-bottom: 1px solid #dddddd;
+            }
+            section div i {
+                font-weight: bold;
+            }
+            section div span{
+            	font-size:1rem;
+            }
+            section div img{
+            	width:1.5rem;height:auto;margin-bottom:-0.2rem;
+            }
+    </style>
+</head>
+<body>
+     <!--我要成学霸页面-->
+     <section class="aui-content">
+            <div class="aui-text-center bg-ffffff" onclick="openLink('http://ark.intel.com/m/zh-cn/')">
+            	<img src="../../image/bvar/wycxb1.png" alt="" />
+                <span class="tetx-333333">产品参数查询<span>
+            </div>
+            <div class="aui-text-center bg-ffffff" onclick="openUrl('/html/bvar/jspxzl.html')">
+                <img src="../../image/bvar/wycxb2.png" alt=""/>
+                <span class="text-333333">技术培训资料</span>
+            </div>
+            <div class="aui-text-center bg-ffffff" onclick="openUrl('/html/bvar/cpzshc.html')">
+                <img src="../../image/bvar/wycxb3.png" alt=""/>
+                <span class="text-333333">产品知识荟萃</span>
+            </div>
+            <div class="aui-text-center bg-ffffff" onclick="openUrl('/html/bvar/khalfx.html')">
+                <img src="../../image/bvar/wycxb4.png" alt=""/>
+                <span class="text-333333">客户案例分享</span>
+            </div>
+            <div class="aui-text-center bg-ffffff" onclick="openUrl('/html/bvar/jyjjfa.html')">
+                <img src="../../image/bvar/wycxb5.png" alt=""/>
+                <span class="text-333333">教育解决方案<span>
+            </div>
+            <div class="aui-text-center bg-ffffff" onclick="openUrl('/html/bvar/yljjfa.html')">
+                <img src="../../image/bvar/wycxb6.png" alt=""/>
+                <span class="text-333333">医疗解决方案</span>
+            </div>
+    </section>
+</body>
+
+<script type="text/javascript" src="../../script/common.js"></script>
+
+<script type="text/javascript">
+
+    function openUrl(url){
+        zhuge.track("微信_bvar_我要成学霸");
+        window.location.href = BASE_URL+url;
+
+    }
+	function openLink(link){
+		console.log(111);
+		window.location.href=link;
+	}
+</script>
+</html>

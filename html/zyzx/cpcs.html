@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">产品参数查询</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <title class="aui-text-center">产品参数</title>
+    <style>
+        body{
+            background: #ffffff;
+        }
+        #search-classify{
+            height: 2rem;
+            line-height: 2rem;
+            z-index: 996;
+            position: relative;
+            width: 100%;
+            background-color:#ffffff;
+        }
+        #allbtn-classify{
+            top: 0;
+            height: 2rem;
+            line-height: 2rem;
+            width: 100%;
+            background-color:#ffffff;
+            position: fixed;
+            z-index: 6;
+        }
+        #footer{
+            position: fixed;
+            bottom: 0;
+            color: #ffffff;
+            width: 100%;
+            z-index: 999;
+        }
+        .border-right{
+            border-right: 1px solid #ffffff;
+        }
+        .kong{
+            height: 6.5rem;
+            width: 100%;
+        }
+        #type-select{
+            background: #fff;
+        }
+        .active{
+            color:#039be5 !important;
+            font-weight:bold;
+        }
+        img{
+            max-height:100%;
+        }
+        .middle{
+            height: 2.2rem;
+            background-color: #EEEEEE;
+            overflow: hidden;
+            line-height: 32px;
+            border-bottom:1px solid #ddd;
+        }
+        .middle_text{
+            height:32px;
+            margin-top: 10px;
+            margin-left: 15px;
+            margin-right:15px;
+        }
+        .search{
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 0 10px;
+            text-align: center;
+        }
+        .middle_text .submit{ background: #0071c5; padding: 0 20px; margin-left: 10px; font-size: 14px; display: none; }
+        .middle_text.active .search{
+            text-align: left;
+        }
+        .middle_text.active .search input{ text-align: left; background-position: left center; }
+        .middle_text.active .submit{ display: block;  }
+        .search input{
+            display: block;
+            line-height: 32px;
+            text-align: center;
+            width: 100%;
+            color:#AAAAAA;
+            font-size: 15px;
+            padding-left: 17px;
+            background: url(../../image/home/discover_normal.png) no-repeat 40% center;
+            background-size: 13px auto;
+        }
+        .height-tag{
+		    display: -webkit-box;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    word-wrap: break-word;
+		    word-break: break-all;
+		    white-space: normal !important;
+		    -webkit-line-clamp: 3;
+		    -webkit-box-orient: vertical;
+		}
+		.height-tag-1{
+		    display: -webkit-box;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    word-wrap: break-word;
+		    word-break: break-all;
+		    white-space: normal !important;
+		    -webkit-line-clamp: 1;
+		    -webkit-box-orient: vertical;
+		}
+</style>
+</head>
+<body>
+    <!-- 产品参数页面 -->
+     <section>
+        <div class="aui-searchbar" id="search">
+            <div class="aui-searchbar-input aui-border-radius">
+                <i class="aui-iconfont aui-icon-search" onclick="doSearch()"></i>
+                <form action="javascript:doSearch();">
+                    <input type="search" placeholder="请输入搜索内容" id="search-input">
+                </form>
+            </div>
+            <div class="aui-searchbar-cancel">取消</div>
+        </div>
+    </section>
+    <div class="middle">
+        <!--<div class="middle_text flex-wrap" onclick="fnStartSearch()">
+            <div class="search flex-con" ><input id="search" type="search" placeholder="搜索"></div>
+            <div class="submit" onclick="fnSearch()">搜索</div>
+        </div>-->
+    </div>
+    <!-- 筛选 -->
+    <section class="aui-content" id="search-classify">
+        <div class="aui-text-center text-747474 aui-padded-l-15 aui-padded-r-15" onclick="openSelector()" id="selectTop">
+            <span id="selectedItem">全部</span>  <i class="aui-iconfont aui-icon-down"></i>
+        </div>
+        <section class="aui-hide" id="type-select">
+        </section>
+    </section>
+    <section >
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-media-list" >
+				<li class="aui-list-item" data-id="" onclick="openUrl('https://ccechina.intel.com/')">
+			        <div class="aui-media-list-item-inner">
+			            <div class="aui-list-item-media" style="width: 6.5rem; height: 5.6rem">
+			                <img src="../../image/logo.png">
+			            </div>
+			            <div class="aui-list-item-inner" style="position:relative;">
+			                <div class="aui-list-item-text">
+			                    <div class="aui-list-item-title aui-font-size-16">产品参数查询</div>
+			                </div>
+			                <div class="aui-list-item-text aui-font-size-14 heightTag">
+			                    intel产品海量参数一键查询
+			                </div>
+			            </div>
+			        </div>
+			    </li>
+			    <li id="list"></li>
+           </ul>
+       </div>
+    </section>
+</body>
+<!-- 模板 -->
+<script type="text/x-dot-template" id="list-tpl">
+
+    {{for(var i in it){}}
+    <li class="aui-list-item" data-id="{{=it[i].id}}" onclick="openDetail('{{=it[i].id}}')">
+        <div class="aui-media-list-item-inner">
+
+            <div class="aui-list-item-media" style="width: 6.5rem; height: 5.6rem">
+            	{{?it[i].pictures && it[i].pictures.length}}
+                <img src="{{=it[i].pictures[0].url}}">
+                {{??}}
+                <img src="">
+                {{?}}
+            </div>
+
+
+            <div class="aui-list-item-inner" style="position:relative;">
+                <div class="aui-list-item-text">
+                    <div class="aui-list-item-title aui-font-size-16">
+                    <div class="height-tag-1">{{=it[i].title}}</div></div>
+                </div>
+                {{?it[i].abstract}}
+                <div class="aui-list-item-text aui-font-size-14 heightTag">
+                    <div class="height-tag">{{=it[i].abstract}}</div>
+                </div>
+                {{?}}
+                <div class="aui-list-item-footer aui-row aui-pull-right " style="position:absolute;bottom:0rem;right:1rem;">
+                    <i class="aui-iconfont aui-icon-display text-a1a1a1 aui-margin-r-15"><span class=" aui-font-size-12"> {{=it[i].lookcount}}</span></i>
+                    <i class="aui-iconfont aui-icon-laud text-a1a1a1"><span class=" aui-font-size-12"> {{=it[i].zan}}</span></i>
+                </div>
+            </div>
+        </div>
+    </li>
+    {{ } }}
+</script>
+<script type="text/x-dot-template" id="select-content">
+    <div class="aui-text-center aui-border-b text-747474 aui-padded-l-15 aui-padded-r-15" onclick="setSelectType()">
+        全部
+    </div>
+    {{for(var i in it){}}
+    <div class="aui-text-center aui-border-b text-747474 aui-padded-l-15 aui-padded-r-15" data-id="{{=it[i].typeid}}" onclick="setSelectType('{{=it[i].typeid}}','{{=it[i].typename}}')">
+        {{=it[i].typename}}
+    </div>
+    {{}}}
+</script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript">
+    var toast = new auiToast();
+    var pageNo = 0; //根据文档要求pageNo为0，对应文档中的skip参数
+    var loadStatus = true; //判断加载的状态
+    var param = {}; // 定义传输数据对象
+    var searchStr = ''; // 定义搜索字符串
+    var token = localStorage.getItem('token');
+    $(function(){
+        toast.loading({
+            title:"加载中",
+            duration:2000
+        },function(ret){
+            // 加个延时让loading效果显示会
+            setTimeout(function(){
+                getSelector(); // 获取下拉框
+                getData(param); // 获取数据
+            }, 500)
+        });
+    })
+    // 获取下拉框
+    function getSelector(){
+        $.ajax({
+            url: INTEL_API_URL_B+'/jyh_factrecourcetypes/productParametersList', // 下拉类型接口
+            type: 'POST',
+            data: {},
+            success: function(ret){
+                if(ret && ret.length){
+                    // console.log(JSON.stringify(ret));
+                    var selectFn = doT.template($('#select-content').html());
+                    $('#type-select').append(selectFn(ret));
+                    toast.hide();
+                }else{
+                    toast.hide();
+                }
+            },
+            error:function(err){
+                return;
+            }
+        })
+    }
+    // 打开详情页
+    function openDetail(id){
+        zhuge.track("微信_资源中心_详情页");
+        window.location.href = BASE_URL + '/html/zyzx/intel.html?id=' + id;
+    }
+    //固定的查询链接
+    function openUrl(url){
+    	window.location.href=url;
+    }
+    // 判断滚动到底部后加载数据
+    $(window).scroll(function(){
+    　　var scrollTop = $(this).scrollTop();
+    　　var scrollHeight = $(document).height();
+    　　var windowHeight = $(this).height();
+    　　if(scrollTop + windowHeight == scrollHeight && loadStatus){//当滑动到底部并且loadStatus为true时加载
+        getData(param);
+    　　}
+    });
+    function getData(param){
+        // 当正在加载数据时，将loadStatus设置为false，防止滑动到底部重复加载
+        loadStatus = false;
+        var skip = pageNo * 15; //定义下标
+        param.skip = skip; //下标赋值
+        param.limit = 15; //单页数量赋值
+        if(searchStr)param.search = searchStr; // 搜索字符串
+        console.log(JSON.stringify(param));
+        $.ajax({
+            url:INTEL_API_URL_B+"/jyh_factresources/getParametersArticle",
+            type:'POST',
+            data:param,
+            success:function(ret){
+            console.log(JSON.stringify(ret));
+                // 有数据返回时
+                if(ret && ret.data && ret.data.length){
+                    var tempFn = doT.template($("#list-tpl").html());
+                    $("#list").append(tempFn(ret.data));
+                    // 因为默认就显示了loading效果，也就是当pageNo分页等于0的时候显示，那么当pageNo等于0的时候将loading隐藏
+                    if(pageNo == 0){
+                        toast.hide();
+                    }
+                    // 成功写入数据后pageNo递增
+                    pageNo++;
+                    // 将loadStatus设置为true，可以继续加载数据喽
+                    loadStatus = true;
+                }else{
+                    // 当没有数据返回并且pageNo等于0时，说明没有数据（当没有数据返回并且pageNo大于0时，说明没有更多了）
+                    if(pageNo == 0){
+                        // 暂无数据
+                        $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">暂无数据</p>');
+                    }else{
+                        $("#list").append('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">没有更多了</p>');
+                    }
+                    // 既然没有数据也没有更多了，就将loadStatus设置为false，不允许加载了
+                    loadStatus = false;
+                }
+            },
+            error:function(){
+                // 错误处理
+                toast.hide();
+                loadStatus = false;
+                $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">出错啦</p>');
+            }
+        })
+    }
+    // 选择类型
+    function setSelectType(typeid,typename){
+        if(!typeid){
+            param = {};
+            $('#selectedItem').text('全部');
+        } else {
+            param = {
+                type: parseInt(typeid)
+            };
+        }
+        // 首先重置所有按钮为未选中
+        $('#type-select').find('div').each(function(){
+            if($(this).attr('data-id') == typeid){
+                $(this).addClass('active');
+                $('#selectedItem').text(typename);
+            } else {
+                $(this).removeClass('active');
+            }
+        })
+        $('#type-select').addClass('aui-hide');
+        reload(); // 重新加载
+    }
+    // 打开下拉框
+    function openSelector(){
+        $('#type-select').toggleClass('aui-hide');
+    }
+    // 搜索和取消
+    var searchBar = document.querySelector(".aui-searchbar-input");
+    if(searchBar){
+        searchBar.onclick = function(){
+            document.querySelector(".aui-searchbar-cancel").style.marginRight = 0;
+        }
+    }
+    document.querySelector(".aui-searchbar-cancel").onclick = function(){
+        this.style.marginRight = "-"+this.offsetWidth+"px";
+        document.getElementById("search-input").value = '';
+        document.getElementById("search-input").blur();
+    }
+    function doSearch(){
+        var searchValue = document.getElementById("search-input").value;
+        if(searchValue){
+            searchStr = searchValue; // 给搜索字符串赋值
+            reload(); // 重新加载
+        }
+    }
+    // 重新加载
+    function reload() {
+        pageNo = 0; //重置页面
+        $("#list").html(''); //清空页面
+        getData(param); // 获取搜索数据
+    }
+</script>
+</html

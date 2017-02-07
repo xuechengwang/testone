@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">我要得奖励</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <style>
+        .height-tag{
+            height: 1.8rem;
+            line-height: 1.8rem;
+            border-bottom: 1px solid #dddddd;
+        }
+        .span-tag-one{
+            border-radius: 50%;
+            border:1px solid #999999;
+            padding: 3px 3px;
+        }
+        .span-tag-two{
+            border-radius: 1rem;
+            border:1px solid #999999;
+            width: 1.2rem;
+            height: 1.2rem;
+            padding:3px 1.4rem;
+            color: #999999;
+        }
+        .span-tag-three{
+            border-radius: 50%;
+            border:1px solid #009ce9;
+            padding: 3px 3px;
+            color: #009ce9;
+        }
+        .position-tag{
+            position: absolute;
+            top:0;
+            right: 20%;
+        }
+        .position-r{
+            position: relative;
+        }
+        .submit-tag-b{
+            padding: 0.5rem 0;
+            color: #fff;
+            background-color: #009ce9 !important;
+            width: 100%;
+            position: absolute;
+            z-index: 999999;
+            bottom: 0px;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- 我要得奖励_产品信息-->
+
+	<section>
+        <div class="aui-content-padded">新增产品信息</div>
+        <div class="aui-border-bottom bg-ffffff aui-padded-l-15 height-tag" onclick="openList('productbrandtypeid')">
+            <span class="aui-font-size-16 text-666666">品&nbsp牌</span>
+            <span class="aui-iconfont aui-icon-right aui-pull-right aui-padded-r-15" ></span>
+            <span class="aui-pull-right aui-padded-r-15" id="productbrandtype"></span>
+        </div>
+        <div class="aui-border-bottom bg-ffffff aui-padded-l-15 height-tag" onclick="openList('cputypeid')">
+            <span class="aui-font-size-16 text-666666">CPU类型</span>
+            <span class="aui-iconfont aui-icon-right aui-pull-right aui-padded-r-15" ></span>
+            <span class="aui-pull-right aui-padded-r-15" id="cputype"></span>
+        </div>
+        <div class="aui-border-bottom bg-ffffff aui-padded-l-15 height-tag position-r">
+            <span class="aui-font-size-16 text-666666">数&nbsp量</span>
+            <div class="position-tag">
+                    <span class="aui-iconfont aui-icon-minus span-tag-one" onclick="doReduce('qty')"></span>
+                    <span class="aui-text-center span-tag-two" id="qty" data-name="qty">1</span>
+                    <span class="aui-iconfont aui-icon-plus span-tag-three" onclick="doAdd('qty')"></span>
+            </div>
+        </div>
+    </section>
+        <!-- 底部定位，设置一个空的高度div撑起底部定位的高度，否则遮住看不见。 -->
+        <div style="height: 2.5rem;width: 100%;"></div>
+
+        <!-- 底部提交按钮 -->
+        <div class="submit-tag-b aui-text-center" onclick="submitProduct()">
+             提交
+        </div>
+
+</body>
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript" src="../../script/laydate/laydate.js"></script>
+<script type="text/javascript">
+    $(function() {
+        // getData('PFIntelSSD');
+    })
+    var productbrand = []; // 定义品牌数组
+    var cpu = []; // 定义 cpu 数组
+    var producttypeid; // 定义类型
+    var formData = {}; // 定义提交对象
+    var PFTYPE; // 定义种类
+    var producttype; // 定义文字
+    var PFIntelSSDObj = PFServerObj = PFClientObj = PFEducationObj = PFDigitalStudioObj = PFEducationWhiteboardObj = PFIASolutionObj = {}; // 定义各种类对象
+    // 选中即退回到 parent 窗口
+    function submitProduct() {
+        console.info('formData5: '+JSON.stringify(formData));
+        formData.qty = parseInt($('#qty').text());
+        formData.producttypeid = producttypeid;
+        console.log('PFTYPE: '+PFTYPE);
+        switch(PFTYPE) {
+            case 'PFIntelSSD':
+                PFIntelSSDObj = formData; // 英特尔固态硬盘
+                console.log('formData: '+JSON.stringify(formData));
+                console.info('PFIntelSSDObj2: '+JSON.stringify(PFIntelSSDObj));
+                window.parent.getProductInfo(JSON.stringify(formData), PFTYPE, producttype);
+                break;
+            case 'PFServer':
+                PFServerObj = formData; // 服务器
+                console.info('PFIntelSSDObj2: '+JSON.stringify(PFIntelSSDObj));
+                window.parent.getProductInfo(JSON.stringify(formData), PFTYPE, producttype);
+                break;
+            case 'PFClient':
+                PFClientObj = formData; //客户端
+                window.parent.getProductInfo(JSON.stringify(formData), PFTYPE, producttype);
+                break;
+            case 'PFEducation':
+                PFEducationObj = formData; // 教育Widi
+                window.parent.getProductInfo(JSON.stringify(formData), PFTYPE, producttype);
+                break;
+            case 'PFDigitalStudio':
+                PFDigitalStudioObj = formData; // 数字演播室
+                window.parent.getProductInfo(JSON.stringify(formData), PFTYPE, producttype);
+                break;
+            case 'PFEducationWhiteboard':
+                PFEducationWhiteboardObj = formData; // 教育电子白板
+                window.parent.getProductInfo(JSON.stringify(formData), PFTYPE, producttype);
+                break;
+            case 'PFIASolution':
+                PFIASolutionObj = formData; // IA解决方案
+                window.parent.getProductInfo(JSON.stringify(formData), PFTYPE, producttype);
+                break;
+            default: 
+                break;
+        }
+        console.warn('PFServerObj2: '+JSON.stringify(PFServerObj));
+    }
+
+    // 打开选择列表
+    function openList(type) {
+        var data = type == 'productbrandtypeid' ? productbrand : cpu;
+        console.log('PFTYPE: '+PFTYPE);
+        console.info('PFIntelSSDObj3: '+JSON.stringify(PFIntelSSDObj));
+        window.parent.cpxxlist.getData(data, type);
+        window.parent.document.getElementById('cpxx-frame').classList.add('aui-hide');
+        window.parent.document.getElementById('cpxxlist-frame').classList.remove('aui-hide');
+    }
+
+    // 获得品牌 id
+    function setprojectnameid(projectnameid, dataType, projectname) {
+        console.log('PFTYPE3: '+PFTYPE);
+        console.info('PFIntelSSDObj3: '+JSON.stringify(PFIntelSSDObj));
+        if(dataType == 'productbrandtypeid') {
+            $('#productbrandtype').text(projectname);
+            formData.productbrandtype = projectname;
+        } else {
+            $('#cputype').text(projectname);
+            formData.cputype = projectname;
+        }
+        formData[''+ dataType +''] = projectnameid; // 给品牌或者cpu id 赋值
+        console.log('PFTYPE4: '+PFTYPE);
+        console.info('formData4: '+JSON.stringify(formData));
+        console.info('PFIntelSSDObj4: '+JSON.stringify(PFIntelSSDObj));
+        console.warn('PFServerObj1: '+JSON.stringify(PFServerObj));
+    }
+
+    // 获取数据
+    function getData(type) {
+        PFTYPE = type;
+        console.log('type: '+type);
+        var url;
+        resetContent(); // 重置内容
+        formData = {};
+        switch(type) {
+            case 'PFIntelSSD':
+                url = '/jyh_dimbusinessreports/getIntelSSDType'; // 英特尔固态硬盘
+                if(PFIntelSSDObj.hasOwnProperty('producttypeid')) {
+                    console.info('PFIntelSSDObj: '+JSON.stringify(PFIntelSSDObj));
+                    $('#qty').text(PFIntelSSDObj.qty);
+                    $('#productbrandtype').text(PFIntelSSDObj.productbrandtype);
+                    $('#cputype').text(PFIntelSSDObj.cputype);
+                    formData = PFIntelSSDObj;
+                } 
+                break;
+            case 'PFServer':
+                url = '/jyh_dimbusinessreports/getServerType'; // 服务器
+                    console.info('PFIntelSSDObj0: '+JSON.stringify(PFIntelSSDObj));
+                if(PFServerObj.hasOwnProperty('producttypeid')) {
+                    console.warn('PFServerObj: '+JSON.stringify(PFServerObj));
+                    $('#qty').text(PFServerObj.qty);
+                    $('#productbrandtype').text(PFServerObj.productbrandtype);
+                    $('#cputype').text(PFServerObj.cputype);
+                    formData = PFServerObj;
+                } 
+                break;
+            case 'PFClient':
+                url = '/jyh_dimbusinessreports/getClientType'; //客户端
+                if(PFClientObj.hasOwnProperty('producttypeid')) {
+                    $('#qty').text(PFClientObj.qty);
+                    $('#productbrandtype').text(PFClientObj.productbrandtype);
+                    $('#cputype').text(PFClientObj.cputype);
+                    formData = PFClientObj;
+                }
+                break;
+            case 'PFEducation':
+                url = '/jyh_dimbusinessreports/getEduWifiType'; // 教育Widi
+                if(PFEducationObj.hasOwnProperty('producttypeid')) {
+                    $('#qty').text(PFEducationObj.qty);
+                    $('#productbrandtype').text(PFEducationObj.productbrandtype);
+                    $('#cputype').text(PFEducationObj.cputype);
+                    formData = PFEducationObj;
+                } 
+                break;
+            case 'PFDigitalStudio':
+                url = '/jyh_dimbusinessreports/getDigitalStudioType'; // 数字演播室
+                if(PFDigitalStudioObj.hasOwnProperty('producttypeid')) {
+                    $('#qty').text(PFDigitalStudioObj.qty);
+                    $('#productbrandtype').text(PFDigitalStudioObj.productbrandtype);
+                    $('#cputype').text(PFDigitalStudioObj.cputype);
+                    formData = PFDigitalStudioObj;
+                } 
+                break;
+            case 'PFEducationWhiteboard':
+                url = '/jyh_dimbusinessreports/getEduWhiteboardType'; // 教育电子白板
+                if(PFEducationWhiteboardObj.hasOwnProperty('producttypeid')) {
+                    $('#qty').text(PFEducationWhiteboardObj.qty);
+                    $('#productbrandtype').text(PFEducationWhiteboardObj.productbrandtype);
+                    $('#cputype').text(PFEducationWhiteboardObj.cputype);
+                    formData = PFEducationWhiteboardObj;
+                } 
+                break;
+            case 'PFIASolution':
+                url = '/jyh_dimbusinessreports/getIASolutionType'; // IA解决方案
+                if(PFIASolutionObj.hasOwnProperty('producttypeid')) {
+                    $('#qty').text(PFIASolutionObj.qty);
+                    $('#productbrandtype').text(PFIASolutionObj.productbrandtype);
+                    $('#cputype').text(PFIASolutionObj.cputype);
+                    formData = PFIASolutionObj;
+                }
+                break;
+            default:
+                break;
+        }
+        $.ajax({
+            url: INTEL_API_URL_B + url,
+            type:'POST',
+            data: {},
+            success: function(ret) {
+                productbrand = ret[0].productbrand;
+                cpu = ret[0].cpu;
+                producttypeid = ret[0].producttypeid;
+                producttype = ret[0].producttype;
+                console.info('formData6: '+JSON.stringify(formData));
+            },
+            error: function(err) {
+                console.log(JSON.stringify(err));
+            }
+        })
+    }
+    // 执行加
+    function doAdd(type) {
+        var num = parseInt($('[data-name="' + type +'"]').text());
+        num++;
+        $('[data-name="' + type +'"]').text(num);
+    }
+    // 执行减
+    function doReduce(type) {
+        var num = parseInt($('[data-name="' + type +'"]').text());
+        if(num <= 1)return;
+        num--;
+        $('[data-name="' + type +'"]').text(num);
+    }
+    // 重置内容
+    function resetContent() {
+        $('#qty').text(1);
+        $('#productbrandtype').text('');
+        $('#cputype').text('');
+    }
+</script>
+</html>

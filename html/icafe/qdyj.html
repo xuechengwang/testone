@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">渠道业绩</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- 渠道业绩页面 -->
+	<!-- 滑动页 -->
+	<div class="aui-tab" id="tab" >
+	    <div class="aui-tab-item aui-active">OSG商机</div>
+	    <div class="aui-tab-item">渠道报商机</div>
+        <div class="aui-tab-item">我要抢单</div>
+	</div>
+
+    <!-- OSG商机 -->
+	<section id="data-list-tpl-0">
+        <div class="aui-content aui-margin-b-15">
+            <div class="aui-crad-list" style="margin-top:6.5rem;">
+                <div class="aui-crad-list-header aui-text-center"><i class="aui-iconfont aui-icon-gear"></i></div>
+                <div class="aui-crad-list-footer aui-text-center aui-font-size-12 text-c3c3c3">正在建设中，敬请期待…</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 渠道报商机 -->
+    <section id="data-list-tpl-1" class="aui-hide" >
+        <div class="aui-content aui-margin-b-15">
+            <div class="aui-crad-list" style="margin-top:6.5rem;">
+                <div class="aui-crad-list-header aui-text-center"><i class="aui-iconfont aui-icon-gear"></i></div>
+                <div class="aui-crad-list-footer aui-text-center aui-font-size-12 text-c3c3c3">正在建设中，敬请期待…</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 我要抢单 -->
+    <section id="data-list-tpl-2" class="aui-hide">
+        <div class="aui-content aui-margin-b-15">
+            <div class="aui-crad-list" style="margin-top:6.5rem;">
+                <div class="aui-crad-list-header aui-text-center"><i class="aui-iconfont aui-icon-gear"></i></div>
+                <div class="aui-crad-list-footer aui-text-center aui-font-size-12 text-c3c3c3">正在建设中，敬请期待…</div>
+            </div>
+        </div>
+    </section>
+
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+<script type="text/javascript">
+	var tab = new auiTab({
+        element:document.getElementById("tab"),
+        index:1,
+        repeatClick:false
+    },function(ret){
+        console.log(ret);
+        if(ret.index == 1){
+			document.getElementById('data-list-tpl-0').classList.remove('aui-hide');
+            document.getElementById('data-list-tpl-1').classList.add('aui-hide');
+            document.getElementById('data-list-tpl-2').classList.add('aui-hide');
+        }else if(ret.index == 2){
+        	document.getElementById('data-list-tpl-0').classList.add('aui-hide');
+            document.getElementById('data-list-tpl-1').classList.remove('aui-hide');
+            document.getElementById('data-list-tpl-2').classList.add('aui-hide');
+        }else{
+            document.getElementById('data-list-tpl-0').classList.add('aui-hide');
+            document.getElementById('data-list-tpl-1').classList.add('aui-hide');
+            document.getElementById('data-list-tpl-2').classList.remove('aui-hide');
+        }
+    });
+	apiready = function(){
+	};
+</script>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">客户案例分享</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <style>
+     #allbtn-classify{
+        height: 2rem;
+        line-height: 2rem;
+        background-color: #ffffff;
+     }
+     .selector{
+        z-index: 99;
+        display: block;
+        position: relative;
+        background-color: #ffffff;
+     }
+     #channel-tab{
+        overflow: auto;
+     }
+     .active{
+        color:#039be5;
+        font-weight:bold;
+     }
+	img{
+     	max-height:100%;
+     }
+     .height-tag{
+		    display: -webkit-box;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    word-wrap: break-word;
+		    word-break: break-all;
+		    white-space: normal !important;
+		    -webkit-line-clamp: 3;
+		    -webkit-box-orient: vertical;
+		}
+		.height-tag-1{
+		    display: -webkit-box;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    word-wrap: break-word;
+		    word-break: break-all;
+		    white-space: normal !important;
+		    -webkit-line-clamp: 1;
+		    -webkit-box-orient: vertical;
+		}
+    iframe{
+        width: 100%;
+        height: 100%;
+        border: none;
+        position: absolute;
+        z-index: 10000;
+    }
+    </style>
+</head>
+<body>
+
+    <section id="wzxq" class="aui-hide frame-section">
+        <iframe name="wzxq" src="http://intel.apithink.com/html/bvar/wzxq.html"></iframe>
+    </section>
+    <!-- 技术培训资料页面 -->
+
+    <!-- 筛选 -->
+    <section id="main">
+        <section class="aui-content" id="allbtn-classify">
+            <div class="aui-tab" id="tab">
+                <div class="aui-tab-item text-747474">
+                    <div>渠道 <i class="aui-iconfont aui-icon-down"></i></div>
+                </div>
+                <div class="aui-tab-item text-747474">
+                    <div>平台 <i class="aui-iconfont aui-icon-down"></i></div>
+                </div>
+                <div class="aui-tab-item text-747474">
+                    <div>行业 <i class="aui-iconfont aui-icon-down"></i></div>
+                </div>
+            </div>
+        </section>
+        <section class="mr-top-5">
+            <div class="aui-content aui-margin-b-15">
+                <ul class="aui-list aui-media-list" id="list">
+
+                </ul>
+            </div>
+        </section>
+    </section>
+
+
+</body>
+
+<script type="text/x-dot-template" id="selset-list">
+{{for(var i in it){}}
+    <!-- 渠道下拉 -->
+    <section class="aui-border-t aui-padded-b-10 aui-hide selector" id="select-{{=it[i].typeid}}">
+    {{for(var j in it[i].items){}}
+        <div class="aui-text-center aui-border-b" onclick="selectItem('{{=i}}','{{=it[i].items[j].typeid}}')">{{=it[i].items[j].typename||''}}</div>
+    {{}}}
+    </section>
+{{}}}
+</script>
+
+<script type="text/x-dot-template" id="list-tpl">
+
+    {{for(var i in it){}}
+
+    <li class="aui-list-item" onclick="openDetail('{{=it[i].id}}')">
+
+        <div class="aui-media-list-item-inner">
+
+
+
+            <div class="aui-list-item-media" style="width: 6.5rem; height: 5.6rem">
+				{{?it[i].pictures && it[i].pictures.length}}
+                <img src="{{=it[i].pictures[0].url}}">
+                {{?}}
+            </div>
+
+
+
+            <div class="aui-list-item-inner">
+
+                <div class="aui-list-item-text">
+
+                    <div class="aui-list-item-title aui-font-size-16">
+
+                       <div class="height-tag"> {{=it[i].title}} </div>
+
+                    </div>
+
+                </div>
+
+                {{?it[i].abstract}}
+
+
+                <div class="aui-list-item-text aui-font-size-14 heightTag">
+
+                    <div class="height-tag-1">{{=it[i].abstract}}</div>
+
+                </div>
+
+                {{?}}
+
+                <div class="aui-list-item-footer aui-pull-right" style="position:absolute;bottom:0rem;right:1rem;">
+
+                     <i class="aui-iconfont aui-icon-display text-a1a1a1 aui-margin-r-15"><span class=" aui-font-size-12"> {{=it[i].lookcount||'0'}}</span></i>
+
+                     <i class="aui-iconfont aui-icon-laud text-747474 aui-padded-l-10 font-size-13"> {{=it[i].zan||'0'}}</i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </li>
+
+    {{ } }}
+
+</script>
+
+
+<script type="text/javascript" src="../../script/common.js"></script>
+
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+
+<script type="text/javascript">
+
+    var toast = new auiToast();
+
+    var pageNo = 0; //根据文档要求pageNo为0，对应文档中的skip参数
+
+    var loadStatus = true; //判断加载的状态
+
+    var DATA_URL = '/jyh_factarticletypes/CustomerCaseSharing'; //定义全局获取地址,初始为 "客户案例分享" 列表
+
+    var param = {
+    	qudao:""
+    }; // 定义传输数据对象
+
+    // 页面加载完毕
+    $(function(){
+
+        window.onpopstate = function(e) {
+            // getData(param); //获取数据
+            document.getElementById('wzxq').classList.add('aui-hide');
+            document.getElementById('main').classList.remove('aui-hide');
+        }
+        toast.loading({
+
+            title:"加载中",
+
+            duration:2000
+
+        },function(ret){
+
+            // 加个延时让loading效果显示会
+
+            setTimeout(function(){
+
+                getSelector();
+
+                getData(param); //获取数据
+
+            }, 500)
+
+        });
+
+    })
+
+    var tab = new auiTab({
+        element:document.getElementById("tab"),
+        index:1,
+        repeatClick:true //允许重复点击
+    },function(ret){
+        closeSelect(ret.index); //先隐藏所有下拉框
+        var selects=document.querySelectorAll(".aui-tab-item");
+        if(selects[parseInt(ret.index)-1].getAttribute("class")=="aui-tab-item text-747474 aui-active"){
+        	openSelect(ret.index); //根据下标打开
+		}
+		if(ret.index==1){
+			param = {
+                    qudao:""
+                }
+		}
+		if(ret.index==2){
+			param = {
+                    pingtai:""
+                }
+		}
+		if(ret.index==3){
+			param = {
+                    hangye:""
+                }
+		}
+		pageNo=0;
+		getData(param);
+    });
+
+    // 获得下拉数据
+    function getSelector(){
+        $.ajax({
+            url: INTEL_API_URL_B+'/jyh_factarticletypes/findartType', // 下拉类型接口
+            type: 'POST',
+            data: {},
+            success: function(ret){
+                // console.log(JSON.stringify(ret));
+                if(ret && ret.length){
+                    var selectFn = doT.template($('#selset-list').html());
+                    $('#allbtn-classify').append(selectFn(ret));
+                    toast.hide();
+                }else{
+                    toast.hide();
+                }
+            },
+            error:function(err){
+                console.log('select: '+JSON.stringify(err));
+                // 错误处理
+                toast.hide();
+                loadStatus = false;
+                $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">出错啦</p>');
+            }
+        })
+    }
+
+    // 打开选择项目
+    function selectItem(type, typeid){
+        var index = parseInt(type) + 1;
+        // 首先重置所有按钮为未选中
+        $('.selector').find('div').each(function(){
+            $(this).removeClass('active');
+        })
+        var divDoms = $('#select-' + index).find('div'); //获取当前下拉框所有按钮
+        $(divDoms[typeid-1]).addClass('active'); //将当前按钮加上 active
+        // 判断当前种类，分别添加参数
+        switch(index){
+            case 1:
+                param = {
+
+                    qudao:parseInt(typeid)
+
+                } // 选择渠道
+                break;
+            case 2:
+                param = {
+
+                    pingtai:parseInt(typeid)
+
+                } // 选择平台
+                break;
+            case 3:
+                param = {
+
+                    hangye:parseInt(typeid)
+
+                } // 选择行业
+                break;
+            default:
+                break;
+        }
+        closeSelect(); //隐藏下拉框
+        pageNo = 0; //重置页面
+        $("#list").html(''); //清空页面
+        getData(param); //获取数据
+    }
+
+    // 判断滚动到底部后加载数据
+
+    $(window).scroll(function(){
+
+    　　var scrollTop = $(this).scrollTop();
+
+    　　var scrollHeight = $(document).height();
+
+    　　var windowHeight = $(this).height();
+
+    　　if(scrollTop + windowHeight == scrollHeight && loadStatus){//当滑动到底部并且loadStatus为true时加载
+
+    　　　　getData(param);
+
+    　　}
+
+    });
+
+    //获取数据
+    function getData(param){
+        var skip = pageNo * 15; //定义下标
+        param.skip = skip; //下标赋值
+        param.limit = 15; //单页数量赋值
+        console.log('传入的param: '+JSON.stringify(param));
+        $.ajax({
+
+            url:INTEL_API_URL_B+DATA_URL,
+
+            type:'POST',
+
+            data: param,
+
+            success: function(ret){
+
+                // 有数据返回时
+
+                if(ret && ret.data && ret.data.length){
+					if(pageNo == 0){
+						$("#list").html("");
+                        toast.hide();
+
+                    }
+                    console.log('返回的total: '+JSON.stringify(ret.total));
+
+                    console.log('返回的长度: '+JSON.stringify(ret.data.length));
+
+                    var tempFn = doT.template($("#list-tpl").html());
+
+                    $("#list").append(tempFn(ret.data));
+
+                    // 因为默认就显示了loading效果，也就是当pageNo分页等于0的时候显示，那么当pageNo等于0的时候将loading隐藏
+
+
+
+                    // 成功写入数据后pageNo递增
+
+                    pageNo++;
+
+                    // 将loadStatus设置为true，可以继续加载数据喽
+
+                    loadStatus = true;
+
+                }else{
+					toast.hide();
+                    // 当没有数据返回并且pageNo等于0时，说明没有数据（当没有数据返回并且pageNo大于0时，说明没有更多了）
+
+                    if(pageNo == 0){
+
+                        // 暂无数据
+
+                        $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">暂无数据</p>');
+
+                    }else{
+
+                         $("#list").append('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">没有更多了</p>');
+
+                    }
+
+                    // 既然没有数据也没有更多了，就将loadStatus设置为false，不允许加载了
+
+                    loadStatus = false;
+
+                }
+
+            },
+
+            error:function(err){
+                console.log(JSON.stringify(err));
+
+                // 错误处理
+
+                toast.hide();
+
+                loadStatus = false;
+
+                $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">出错啦</p>');
+
+            }
+        })
+    }
+
+    // 打开或者关闭下拉框
+    function openSelect(type){
+        $('#select-' + type).toggleClass('aui-hide');
+    }
+
+    // 隐藏下拉框
+    function closeSelect(type){
+        if(!type){ //判断有没有传入类型，如果没有执行所有隐藏
+            $('.selector').each(function(){
+                $(this).addClass('aui-hide');
+            });
+        } else {
+            $('.selector').each(function(index, ele){
+                if(index+1 != type)$(this).addClass('aui-hide');
+            });
+        }
+    }
+	// 打开详情页
+    function openDetail(id){
+        zhuge.track("微信_bvar_文章详情");
+        history.pushState(param, '微信_bvar_文章详情', 'http://intel.apithink.com/html/bvar/khalfx.html');
+        window.wzxq.getData(id);
+        document.getElementById('wzxq').classList.remove('aui-hide');
+        document.getElementById('main').classList.add('aui-hide');
+        // window.location.href = BASE_URL + '/html/bvar/wzxq.html?id=' + id;
+    }
+</script>
+</html

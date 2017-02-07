@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">我要去抢单</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    
+
+    <style>
+        .submit-tag-b{
+            padding: 0.5rem 0;
+            color: #ffffff;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+        .position-b{
+            border-bottom: 1px solid #dddddd;
+        }
+        .aui-list.aui-list-in .aui-list-item-inner:after {
+            content: none;
+        }
+        .bg-dddddd-color{
+            background-color: #f5f5f5 !important;
+        }
+        .mr-left-30{
+            margin-left: 1rem !important;
+        }
+        img.tsj,img.bjb,img.fwq,img.pb{
+	     	width:0.8rem;height:auto;margin-bottom:-0.1rem;margin-right:0.25rem;
+	     }
+	     img.bjb,img.fwq{
+	     	width:1rem;
+	     }
+	     img.pb{
+	     	margin-bottom:-0.2rem;
+	     }
+    </style>
+</head>
+<body>
+<section id="list">
+</section>
+<script type="text/x-dot-template" id="list-tpl">
+    <!-- 我要去抢单  反馈详情页面-->
+    <div class="aui-content aui-margin-b-15">
+        <ul class="aui-list aui-list-in">
+            <li class="aui-list-item bg-dddddd-color text-666666" >
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title">商机详情</div>
+                </div>
+            </li>
+            <li class="aui-list-item position-b" >
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title text-666666">所在地区：<span class="text-999999">{{=it.city||''}}</span></div>
+                </div>
+            </li>
+            <li class="aui-list-item position-b">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title text-666666">采购公司：<span class="text-999999">{{=it.demandside||''}}</span></div>
+                </div>
+            </li>
+            <li class="aui-list-item position-b">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title text-666666">预计采购时间：<span class="text-999999">{{=formatTime(it.purchasetime)||''}}</span></div>
+                </div>
+            </li>
+            {{? it.status==0}}
+            <li class="aui-list-item position-b">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title text-666666"><span class="text-999999">{{=it.deadline||''}}</span></div>
+                </div>
+            </li>
+            {{?}}
+            <li class="aui-list-item position-b">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title text-666666">采购数量：
+                        <div class="aui-inline" style=""><img src="../../image/bvar/tsj.png" class="tsj" />{{=it.computer||''}}</div>
+                		<div class="aui-inline" style="margin-left:0.5rem;"><img src="../../image/bvar/bjb.png" class="bjb" />{{=it.laplop||''}}</div>
+                    	<div class="aui-inline" style="margin-left:0.5rem;"><img src="../../image/bvar/fwq.png" class="fwq" />{{=it.server||''}}</div>
+                    	<div class="aui-inline" style="margin-left:0.5rem;"><img src="../../image/bvar/pb.png" class="pb" />{{=it.tablet||''}}</div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item position-b">
+                <div class="aui-list-item-inner aui-padded-t-5 aui-padded-b-5">
+                    <div class="aui-list-item-title text-666666">备注：<span class="aui-font-size-14">台式机、笔记本没有限定品牌，贵公司如此抢单，请在3日内进行反馈。</span></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--待反馈底部-->
+    {{? it.status==0}}
+    <div class="aui-content-padded aui-padded-b-5 text-808080">
+        <div class="aui-inline" style=""><img src="../../image/bvar/tsj.png" class="tsj" />台式</div>
+		<div class="aui-inline" style="margin-left:0.5rem;"><img src="../../image/bvar/bjb.png" class="bjb" />笔记本</div>
+    	<div class="aui-inline" style="margin-left:0.5rem;"><img src="../../image/bvar/fwq.png" class="fwq" />服务器</div>
+    	<div class="aui-inline" style="margin-left:0.5rem;"><img src="../../image/bvar/pb.png" class="pb" />平板</div>
+    </div>
+    <div class="aui-crad-list aui-content-padded text-808080" >
+        <div class="aui-crad-list-header ">
+            <p class="font-size-13">抢单规则</p>
+            <p class="font-size-13">1、每个业务ID初始有6个抢单机会:</p>
+            <p class="font-size-13">2、每个成功关注号初始有三个抢单机会</p>
+            <p class="font-size-13">3、成功抢单后请在“抢单战利品”查看详情</p>
+        </div>
+    </div>
+<!-- 底部定位，设置一个空的高度div撑起底部定位的高度，否则遮住看不见。 -->
+    <div style="height: 2.5rem;width: 100%;"></div>
+    <!-- 底部提交按钮 -->
+    <div class="submit-tag-b bg-009ce9-blue aui-text-center" onclick="feedback('{{=it._id}}','{{=it.city}}','{{=it.demandside}}')">反馈</div>
+    <!--已完成底部-->
+    {{?? }}
+    <ul class="aui-list aui-list-in">
+        <li class="aui-list-item position-b">
+                <div class="aui-list-item-inner">
+                	<!--/status, 0=待反馈，1=已经反馈，2=已过期，3=放弃有效信息， 4=放弃无效信息, 5=被释放-->
+                    <div class="aui-list-item-title text-666666">抢单状态：
+                    	{{? it.status==1}}
+                    	<span class="text-999999">已反馈</span>
+                    	{{?? it.status==2}}
+                    	<span class="text-999999">已过期</span>
+                    	{{?? it.status==3}}
+                    	<span class="text-999999">放弃有效信息</span>
+                    	{{?? it.status==4}}
+                    	<span class="text-999999">放弃无效信息</span>
+                    	{{?? it.status==5}}
+                    	<span class="text-999999">被释放</span>
+                    	{{?}}
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item position-b">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title text-666666">抢单时间：<span class="text-999999">{{=formatTime(it.grabdate)||''}}</span></div>
+                </div>
+            </li>
+            <li class="aui-list-item position-b">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-title text-666666">反馈时间：<span class="text-999999">{{=formatTime(it.purchasetime)||''}}</span></div>
+                </div>
+            </li>
+            <li class="aui-list-item position-b">
+                <div class="aui-list-item-inner aui-padded-t-5 aui-padded-b-5">
+                    <div class="aui-list-item-title text-666666">具体反馈：<span class="text-999999 aui-font-size-14">{{=it.demandside||''}}</span></div>
+                </div>
+            </li>
+    </ul>
+    {{?}}
+</script>
+</body>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript">
+	var toast = new auiToast();
+    var searchStr = window.location.search.substr(1); //获得当前页面搜索数据
+    var searchArr = searchStr.split('='); //根据等号切割成数组
+    var searchId = searchArr[1]; //获取等号后面元素
+    console.log(searchId);
+    var feedbackDatas;//保存的数据传到fkym页
+//         var token="?access_token=2JFkLwPi5HusOjsk0gjPdSiHe5vGbR2WW1wEgvADocLRVqtMBwgb14vPnlCqCT0N";
+		var token = "?access_token="+localStorage.getItem('token');
+		//如果未登录直接跳登录页
+	if(!localStorage.getItem('token')){
+		window.location.href = BASE_URL+'/html/register/bvar_register.html';
+	}
+    $(function(){
+        toast.loading({
+            title:"加载中",
+            duration:2000
+        },function(ret){
+            // 加个延时让loading效果显示会
+            setTimeout(function(){
+                getData();
+            }, 500)
+        });
+    })
+    // 获取地址栏参数
+//  function getQueryString(name) {
+//      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+//      var r = window.location.search.substr(1).match(reg);
+//      if (r != null) return unescape(r[2]);
+//      return null;
+//  }
+    //获取数据
+    function getData(){
+        // 调用服务器请求
+        $.ajax({
+            url: INTEL_API_URL_B+"/jyh_grabrecords/viewGrabDetail"+token,
+            type: 'POST',
+            data: {
+                id: searchId
+            },
+            success: function(ret){
+                toast.hide(); //隐藏 loading
+                if(ret){
+                	feedbackDatas=ret.data[0];//保存该详情的数据
+                	console.log(JSON.stringify(ret));
+                    var tempFn = doT.template($('#list-tpl').html());
+                    $('#list').append(tempFn(ret.data[0]));
+                }else{
+					toast.hide();
+					toast.fail({
+			            title:ret.message,
+			            duration:1000
+			        },function(ret){
+		    		});
+				}
+            },
+            error: function(err){
+                toast.hide(); //隐藏 loading
+                console.log(JSON.stringify(err));
+                var message=err.responseJSON.error.message ;
+    			toast.fail({
+		            title:message,
+		            duration:2000
+		        },function(ret){
+	    		});
+            }
+        })
+    }
+    // 获取时间格式 (精确到天)
+    function formatTime(timeStr){
+        var str = timeStr.substr(0, 10);
+        str = str.replace(/-/g,"/");
+        return str;
+    }
+    //点击反馈，反馈商机
+    function feedback(id,city,demandside){
+    	//console.log(JSON.stringify(feedbackDatas));
+//  	window.location.href=BASE_URL +'/html/bvar/wyqqd_fkym.html?'+id+'&'+city+'&'+demandside;
+        zhuge.track("微信_bvar_反馈商机");
+		window.location.href=BASE_URL +'/html/bvar/wyqqd_fkym.html?datas='+JSON.stringify(feedbackDatas);
+    }
+</script>
+</html>

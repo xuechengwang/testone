@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title class="aui-text-center">我要去抢单</title>
+   <!-- <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>-->
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+
+    <style>
+     .position-tag{
+        position: relative;
+        width: 1.8rem;
+        height:1.8rem;
+        color: #ffffff;
+        padding-top:5px;
+        border-radius:5px;
+     }
+     .position-tag:before{
+        content: '';
+        height: 2.6rem;
+        width: 1px;
+        background-color: #e9e9e9;
+        position: absolute;
+        left: -1rem;
+        top: 0;
+     }
+     .borderLeft:before{
+        content: '';
+        height: 2.6rem;
+        width: 1px;
+        background-color: #e9e9e9;
+        position: absolute;
+        left: -1rem;
+        top: 0;
+     }
+     .next-tag{
+        color: #ffffff;
+        margin-left:0.5rem;
+        padding: 0.3rem 0.6rem;
+        border-radius: 5px;
+     }
+     .border-bottom{
+        border-bottom: 5px solid #f5f5f5;
+     }
+     .mrgin-l-40{
+        margin-left:1.6rem;
+     }
+     .aui-card-list img{
+        width: 4.5rem;
+        height: 4.5rem;
+     }
+     .aui-card-list{
+     	margin-bottom:0;
+     }
+     .position-img-tag{
+        position: absolute;
+        right: 0.8rem;
+     }
+     .position-status-tag{
+        position: absolute;
+        right: 0.75rem;
+        z-index: 4;
+        color: #009ce9;
+        top: 0.75rem;
+        font-size:0.7rem;
+     }
+     .position-status-tag-two{
+        position: absolute;
+        z-index: 5;
+        font-size: 0.9rem;
+        font-weight: 900;
+        left: 45%;
+     }
+     .bg-color-dddddd{
+        background-color: #dddddd !important;
+     }
+     .position-fined-tag{
+        position: absolute;
+        z-index: 6;
+        right: 0.75rem;
+     }
+     img.tsj,img.bjb,img.fwq,img.pb{
+     	width:0.8rem;height:auto;margin-bottom:-0.1rem;margin-right:0.25rem;
+     }
+     img.bjb,img.fwq{
+     	width:1rem;
+     }
+     img.pb{
+     	margin-bottom:-0.2rem;
+     }
+    </style>
+</head>
+<body>
+    <!-- 我要去抢单  待反馈商机页面-->
+	<!-- 滑动页 -->
+	<div class="aui-tab" id="tab">
+	    <div class="aui-tab-item aui-active">可抢商机</div>
+	    <div class="aui-tab-item">待反馈商机</div>
+        <div class="aui-tab-item">已完成商机</div>
+	</div>
+	<section id="list">
+
+	</section>
+    <!-- 可抢商机 -->
+    <script type="text/x-dot-template" id="list-tpl-1">
+        <ul class="aui-content aui-card-list " >
+        {{for(var i in it){}}
+        	<!--抢单和带反馈列表公用一个详情页，已完成的单独一个详情页（wyqqd_qdxqy,ygq,ywc页面无用）-->
+            <div  onclick="openUrl('{{=it[i].id}}','/html/bvar/wyqqd_qdxqy.html')">
+            	<div class="position-img-tag">
+	                <img src="../../image/bvar/qd.png">
+	            </div>
+	            <li class="aui-padded-l-15 aui-padded-t-15 aui-padded-b-5 aui-padded-r-15  mr-t-75" >
+	                <div class="aui-font-size-14 text-666666">
+	                    <div class="aui-inline" style="width:18%;"><img src="../../image/bvar/tsj.png" class="tsj" />{{=it[i].computer||''}}</div>
+                    	<div class="aui-inline" style="width:18%;"><img src="../../image/bvar/bjb.png" class="bjb" />{{=it[i].laplop||''}}</div>
+	                    <div class="aui-inline" style="width:18%;"><img src="../../image/bvar/fwq.png" class="fwq" />{{=it[i].server||''}}</div>
+	                    <div class="aui-inline" style="width:18%;"><img src="../../image/bvar/pb.png" class="pb" /><span style="">{{=it[i].tablet||''}}</span></div>
+	                </div>
+	            </li>
+	            <li class="aui-row aui-padded-l-15 aui-padded-r-15">
+	                <div class="aui-col-xs-6 aui-font-size-14 text-333333">{{=it[i].demandside||''}}</div>
+	            </li>
+	            <li class="aui-row aui-padded-l-15 aui-padded-r-15 aui-padded-b-10 aui-border-b">
+	                <div class="aui-col-xs-6 aui-font-size-12 text-999999">预计采购时间：<span>{{=formatTime(it[i].purchasetime)||''}}</span></div>
+	            </li>
+            </div>
+         {{}}}
+        </ul>
+    </script>
+
+
+    <!-- 待反馈商机 -->
+    <script type="text/x-dot-template" id="list-tpl-2">
+	    <section >
+	        <ul class="aui-content aui-card-list " >
+	        {{for(var i in it){}}
+	        	{{? it[i].status===0}}
+		        <div onclick="openUrl('{{=it[i]._id}}','/html/bvar/wyqqd_fkxqy.html')">
+		        {{??}}
+		        <div>
+		        {{?}}
+		            <li class="aui-padded-l-15 aui-padded-t-15 aui-padded-b-5 aui-padded-r-15  mr-t-75" style="position:relative;">
+		                <div class="aui-font-size-14 text-666666">
+		                    <div class="aui-inline" style="width:18%;"><img src="../../image/bvar/tsj.png" class="tsj" />{{=it[i].computer||''}}</div>
+                    		<div class="aui-inline" style="width:18%;"><img src="../../image/bvar/bjb.png" class="bjb" />{{=it[i].laplop||''}}</div>
+	                    	<div class="aui-inline" style="width:18%;"><img src="../../image/bvar/fwq.png" class="fwq" />{{=it[i].server||''}}</div>
+	                    	<div class="aui-inline" style="width:18%;"><img src="../../image/bvar/pb.png" class="pb" />{{=it[i].tablet||''}}</div>
+		                </div>
+		                <!--/status, 0=待反馈，1=已经反馈，2=已过期，3=放弃有效信息， 4=放弃无效信息, 5=被释放-->
+		                {{? it[i].status==0}}
+		                <div class="position-status-tag">待反馈</div>
+		                {{?? it[i].status==2}}
+		                <div class="position-status-tag-two">{{=it[i].deadline}}</div>
+		                {{?}}
+		                
+		            </li>
+		            <li class="aui-row aui-padded-l-15 aui-padded-r-15">
+		                <div class="aui-col-xs-6 aui-font-size-14 text-333333">{{=it[i].demandside||''}}</div>
+		            </li>
+		            <li class="aui-row aui-padded-l-15 aui-padded-r-15 aui-padded-b-10 aui-border-b">
+		                <div class="aui-col-xs-6 aui-font-size-12 text-999999">预计采购时间：<span>{{=formatTime(it[i].purchasetime)||''}}</span></div>
+		                {{? it[i].status==0}}
+		                <div class="aui-col-xs-6 aui-text-right aui-font-size-12 text-999999"> {{=it[i].deadline||''}}</div>
+		            	{{?}}
+		            </li>
+	            </div>
+            {{}}}
+	        </ul>
+	    </section>
+
+	</script>
+    <!-- 已完成商机 -->
+    <script type="text/x-dot-template" id="list-tpl-3">
+	    <section >
+	        <ul class="aui-content aui-card-list " >
+				{{for(var i in it){}}
+				<div onclick="openUrl('{{=it[i]._id}}','/html/bvar/wyqqd_fkxqy.html')">
+		            <!--<div class="position-img-tag">-->
+		                <!--<img src="../../image/bvar/qd.png">-->
+		            <!--</div>-->
+		            <li class="aui-padded-l-15 aui-padded-t-15 aui-padded-b-5 aui-padded-r-15  mr-t-75" style="position:relative;">
+		                <div class="aui-font-size-14 text-666666">
+		                    <div class="aui-inline" style="width:18%;"><img src="../../image/bvar/tsj.png" class="tsj" />{{=it[i].computer||''}}</div>
+                    		<div class="aui-inline" style="width:18%;"><img src="../../image/bvar/bjb.png" class="bjb" />{{=it[i].laplop||''}}</div>
+	                    	<div class="aui-inline" style="width:18%;"><img src="../../image/bvar/fwq.png" class="fwq" />{{=it[i].server||''}}</div>
+	                    	<div class="aui-inline" style="width:18%;"><img src="../../image/bvar/pb.png" class="pb" />{{=it[i].tablet||''}}</div>
+		                </div>
+		                <!--/status, 0=待反馈，1=已经反馈，2=已过期，3=放弃有效信息， 4=放弃无效信息, 5=被释放-->
+		                {{? it[i].status==1}}
+		                <div class="position-fined-tag">已反馈</div>
+		                {{?? it[i].status==2}}
+		                <div class="position-fined-tag">已过期</div>
+		                {{?? it[i].status==3}}
+		                <div class="position-fined-tag">放弃有效信息</div>
+		                {{?? it[i].status==4}}
+		                <div class="position-fined-tag">放弃无效信息</div>
+		                {{?? it[i].status==5}}
+		                <div class="position-fined-tag">被释放</div>
+		                {{?}}
+		            </li>
+		            <li class="aui-row aui-padded-l-15 aui-padded-r-15">
+		                <div class="aui-col-xs-6 aui-font-size-14 text-333333">{{=it[i].demandside||''}}</div>
+		            </li>
+		            <li class="aui-row aui-padded-l-15 aui-padded-r-15 aui-padded-b-10 aui-border-b">
+		                <div class="aui-col-xs-6 aui-font-size-12 text-999999">预计采购时间：<span>{{=formatTime(it[i].purchasetime)||''}}</span></div>
+		            </li>
+	            </div>
+	            {{}}}
+	        </ul>
+	    </section>
+	</script>
+</body>
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript">
+
+	var toast = new auiToast();
+    var pageNo = 1; //根据文档要求pageNo为0，对应文档中的skip参数
+    var loadStatus = true; //判断加载的状态
+    var INDEX=1;
+//  var token="?access_token=YSrtIy4DM3u9XvmCFsrYCS9TdtmEOgvLk66PlvG32LGQ5JcfC54LFacVclDp4nBY";
+	var token = "?access_token="+localStorage.getItem('token');
+    var DATA_URL = '/jyh_grabs/GrabBusinessOpportunities'+token; //定义初始的列表-可抢商机
+		
+	//如果未登录直接跳登录页
+	if(!localStorage.getItem('token')){
+		window.location.href = BASE_URL+'/html/register/bvar_register.html';
+	}
+
+    //页面进入默认我要去抢单-可抢商机
+    $(function(){
+        toast.loading({
+            title:"加载中",
+            duration:2000
+        },function(ret){
+            // 加个延时让loading效果显示会
+            setTimeout(function(){
+                getData(1);
+            }, 500)
+        });
+    })
+    // 判断滚动到底部后加载数据
+
+       $(window).scroll(function(){
+
+       　　var scrollTop = $(this).scrollTop();
+
+       　　var scrollHeight = $(document).height();
+
+       　　var windowHeight = $(this).height();
+       　　if(scrollTop + windowHeight >= (scrollHeight-30) && loadStatus){//当滑动到底部并且loadStatus为true时加载
+
+       　　　　getData(INDEX);
+
+       　　}
+
+       });
+    var tab = new auiTab({
+        element:document.getElementById("tab"),
+        index:1,
+        repeatClick:false
+    },function(ret){
+    	pageNo = 1; //重置页面
+    	$("#list").html(''); //清空页面
+        console.log(ret);
+        if(ret.index == 1){
+        	DATA_URL='/jyh_grabs/GrabBusinessOpportunities'+token//可抢商机
+        }else if(ret.index == 2){
+        	DATA_URL='/jyh_grabrecords/getGrabFeebackList'+token//待反馈商机
+        }else{
+        	DATA_URL='/jyh_grabrecords/getFinishedGrabList'+token//已完成商机
+        }
+        INDEX=ret.index;
+        getData(ret.index);
+    });
+    // 打开详情页
+    function openUrl(id,url){
+        zhuge.track("微信_bvar_我要抢单详情页");
+        window.location.href = BASE_URL + url+'?id=' + id;
+    }
+    //加载数据
+	function getData(index){
+        //如果未登录直接跳登录页
+		if(!localStorage.getItem('token')){
+    		window.location.href = BASE_URL+'/html/register/bvar_register.html';
+    		return;
+    	}
+        // 当正在加载数据时，将loadStatus设置为false，防止滑动到底部重复加载
+        loadStatus = false;
+        console.log(index);
+        var url=INTEL_API_URL_B+DATA_URL;//默认可抢商机
+        var skip = pageNo * 15;
+        $.ajax({
+            url:url,
+            type:'POST',
+            data:{
+//              skip:skip,
+//              limit:15
+				current:pageNo,//页数
+				pagesize:15//每页数据条数
+            },
+            success:function(ret){
+            	console.log('ret数据：'+ret.data.length);
+                // 有数据返回时
+                if(ret&& ret.data && ret.data.length){
+                       
+                       var tempFn;
+                       if(index==1){
+                       		tempFn = doT.template($("#list-tpl-1").html());
+                       }else if(index==2){
+                       		tempFn = doT.template($("#list-tpl-2").html());
+                       }else{
+                       		tempFn = doT.template($("#list-tpl-3").html());
+                       }
+                    $("#list").append(tempFn(ret.data));
+                    // 因为默认就显示了loading效果，也就是当pageNo分页等于0的时候显示，那么当pageNo等于0的时候将loading隐藏
+                    if(pageNo == 1){
+                        toast.hide();
+                    }
+                    // 成功写入数据后pageNo递增
+                    pageNo++;
+                    // 将loadStatus设置为true，可以继续加载数据喽
+                    loadStatus = true;
+                }else{
+					toast.hide();
+                    // 当没有数据返回并且pageNo等于0时，说明没有数据（当没有数据返回并且pageNo大于0时，说明没有更多了）
+                    if(pageNo == 0){
+                        // 暂无数据
+                        $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">暂无数据</p>');
+                    }else{
+                         $("#list").append('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">没有更多了</p>');
+                    }
+                    // 既然没有数据也没有更多了，就将loadStatus设置为false，不允许加载了
+                    loadStatus = false;
+                }
+            },
+            error:function(err){
+            	console.log('err:'+JSON.stringify(err));
+                // 错误处理
+                toast.hide();
+                loadStatus = false;
+                var message=err.responseJSON.error.message ;
+    			toast.fail({
+		            title:message,
+		            duration:2000
+		        },function(ret){
+	    		});
+            }
+        })
+    }
+     // 获取时间格式 (精确到天)
+    function formatTime(timeStr){
+        var str = timeStr.substr(0, 10);
+        str = str.replace(/-/g,"/");
+        return str;
+    }
+</script>
+</html>

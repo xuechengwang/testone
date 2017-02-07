@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title class="aui-text-center">云服务计划</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui-slide.css" />
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <style>
+    body {
+        background-color: #014b7f;
+    }
+    .banner img {
+        width: 100%;
+        display: block;
+    }
+    .classify {
+        position: relative;
+    }
+    .classify img {
+        width: 100%;
+        display: block;
+    }
+    .classify-item-wrap {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        height: 100%;
+    }
+    .classify-item-wrap img {
+        width: 50%;
+        display: block;
+        margin: 0 auto;
+    }
+    .classify-item-wrap .aui-row {
+        padding: 1rem 0;
+        position: relative;
+    }
+    .classify-item-wrap:before {
+        content: "";
+        width: 1px;
+        height: 90%;
+        position: absolute;
+        top: 1rem;
+        left: 50%;
+        background: url('../../image/csp/liney.png') no-repeat;
+        background-position: center bottom;
+        background-size: contain;
+        opacity: 0.5;
+    }
+    .classify-item-wrap .aui-row:before {
+        content: "";
+        width: 80%;
+        height: 1px;
+        position: absolute;
+        bottom: 0rem;
+        left: 50%;
+        margin-left: -40%;
+        background: url('../../image/csp/linex.png') no-repeat;
+        background-position: center bottom;
+        background-size: contain;
+        opacity: 0.5;
+    }
+    .classify-item-wrap .aui-row:last-child:before {
+        background: none;
+    }
+    .aui-row .aui-col-xs-6 {
+        height: auto;
+    }
+
+    #repository{
+    	width:1.2rem;
+    	line-height:0.8rem;
+    	position:fixed;
+    	left:0;
+    	bottom:8rem;
+    	border:1px solid #176EA2;
+    	border-left:0;
+    	color:#FFFFFF;
+    	text-align:center;
+    	padding:0.5rem 0;
+    }
+    .aui-slide-node img {
+            display: block;
+            width: 100%;
+        }
+        #aui-slide{
+        	height:8.5rem !important;
+        }
+        @media only screen and (min-width: 400px) {
+            body {
+                /*max-width: 55%;*/
+                margin: 0 auto;
+            }
+            .swiper-container {
+                width: 100%;
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--<section class="aui-content banner">
+        <img src="../../image/csp/bg1.png" />
+    </section>-->
+    <div id="aui-slide" class="aui-content banner">
+        <div class="aui-slide-wrap" id="banner" >
+		        <img src="../../image/csp/bg1.png" data-echo="../../image/csp/bg1.png"/>
+        </div>
+        <div class="aui-slide-page-wrap"><!--分页容器--></div>
+    </div>
+    <!-- banner tpl -->
+	<script type="text/x-dot-template" id="banner-tpl">
+	    {{for(var i in it){}}
+	    <div class="aui-slide-node" onclick="openBanner('{{=it[i].id}}')">
+	        <img src="{{=it[i].CSPPhoto}}"  data-echo="{{=it[i].CSPPhoto}}"/>
+	    </div>
+	    {{ } }}
+	</script>
+	<div class="aui-hide" id="index-content"></div>
+    <section class="aui-content classify">
+        <img src="../../image/csp/bg2.png" />
+        <div class="classify-item-wrap">
+            <div class="aui-row">
+                <!-- 热点芯闻 -->
+                <div class="aui-col-xs-6" onclick="openUrl('/html/csp2/hygk.html')">
+                    <img src="../../image/csp/i-1.png">
+                </div>
+                <!-- 样机借测 -->
+                <div class="aui-col-xs-6" onclick="openUrl('/html/csp2/wyjyj.html')">
+                    <img src="../../image/csp/i-2.png">
+                </div>
+            </div>
+            <div class="aui-row">
+                <!-- 解决方案 -->
+                <div class="aui-col-xs-6" onclick="openUrl('/html/csp2/jjfa.html')">
+                    <img src="../../image/csp/i-3.png">
+                </div>
+                <!-- 软件推荐 -->
+                <div class="aui-col-xs-6" onclick="openUrl('/html/csp2/rjtj.html')">
+                    <img src="../../image/csp/i-4.png">
+                </div>
+            </div>
+            <div class="aui-row">
+                <div class="aui-col-xs-6" onclick="openUrl('/html/csp2/zxpxlb.html')">
+                    <img src="../../image/csp/i-5.png">
+                </div>
+                <div class="aui-col-xs-6" onclick="openUrl('/html/csp2/schd.html')">
+                    <img src="../../image/csp/i-6.png">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="aui-font-size-14" id="repository" onclick="openUrl('/html/csp2/cechnical_college_frm.html')">我要查资料</section>
+</body>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/aui-slide.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript">
+    var toast = new auiToast();
+    var token=localStorage.getItem("token");
+    var code = getQueryString('code');
+    //获取本地openid
+    var openid = localStorage.getItem("jingyinghuiOpenid");
+    $(function(){
+    	//从公众号菜单进来，csp页面要保存字段roleid为1，注册的时候从本地获取
+    	localStorage.setItem("roleid",1);
+        toast.loading({
+            title:"加载中",
+            duration:2000
+        },function(ret){
+        });
+        checkUserInfo();//校验登陆
+        getBannerData();//获取首页banner
+    })
+    // 获取首页焦点
+    function getBannerData(){
+        $.ajax({
+            url:INTEL_API_URL_B+"/activities/getCSP",
+            type: 'GET',
+            success:function(ret) {
+            	toast.hide();
+                if(ret&&ret.length>0){
+//                     console.log("banner:"+JSON.stringify(ret));
+                    var bannerTpl = $("#banner-tpl").html();
+                    var tempFn = doT.template(bannerTpl);
+                    $("#banner").html("");
+                    $("#banner").html(tempFn(ret));
+                    var slide = new auiSlide({
+                        container:document.getElementById("aui-slide"),
+                        "height":220,
+                        "speed":300,
+                        "autoPlay": 3000, //自动播放
+                        "pageShow":true,
+                        "pageStyle":'dot',
+                        "loop":true,
+                        'dotPosition':'center'
+                    })
+                    echo.init({
+                        offset: 100,
+                        throttle: 250
+                    });
+                }
+                // console.log("banner："+JSON.stringify(ret));
+            },
+            error:function(ret) {
+            	toast.hide();
+            },
+            headers:{
+                'Content-type':'application/json',
+                'authorization':token
+            }
+        });
+    }
+    function checkUserInfo(){
+
+        //从地址栏获取code保存到本地
+        if(code){localStorage.setItem("code",code)}
+        var datas={};
+        //如果有openid优先使用openid校验
+        if(openid){
+        	datas.openid=openid;
+        	//csp部分rolaid固定为1，校验登陆也要传
+        	datas.roleid=1;
+        	getDatas(datas);
+        }else if(code){
+    		datas.code=code;
+        	if(token){
+        		datas.token=token;
+        	}
+        	//csp部分rolaid固定为1
+    		datas.roleid=1;
+        	getDatas(datas);
+        }
+    }
+    function getDatas(datas){
+//  	alert('提交的数据：'+JSON.stringify(datas));
+    	 // 从旧版跳转，获取openid，验证是否登录
+            $.ajax({
+                url:INTEL_API_URL_B+"/users/wxlogin",
+                type:'POST',
+                data:datas,
+                success:function(ret){
+                	toast.hide();
+//                  alert('校验登陆返回的数据:'+JSON.stringify(ret));
+                    if(ret){
+                        if(ret.success == false && ret.code==0){
+                        	//返回失败的时候，也保存openid
+                        	if(!openid&&ret.openid){
+                        		localStorage.setItem("jingyinghuiOpenid",ret.openid); //用户id
+                    		}
+                            setTimeout(function(){
+                                window.location.href = BASE_URL+"/html/register/csp_register.html?code="+code;
+                            }, 300)
+                        }else if(ret.success == false&&(ret.code==2||ret.code==3||ret.code==4)){
+                        	if(!openid&&ret.openid){
+                        		localStorage.setItem("jingyinghuiOpenid",ret.openid); //用户id
+                    		}
+                        	dialog.alert({
+				                title:"提示消息",
+				                msg:ret.message,
+				                buttons:['确定']
+				            },function(ret){
+				            	window.history.go(-1);
+				            })
+				            return;
+                        }
+                        //如果本地没有token，并且返回有token，就从返回的token取并保存到本地
+                    	if(ret.user.accessTokens[0].id){
+                    		localStorage.setItem("token",ret.user.accessTokens[0].id);//token
+                    	}
+						if(ret.success==true){
+							localStorage.setItem("userid",ret.user.id); //用户id
+							if(!openid&&ret.user.openid){
+								localStorage.setItem("jingyinghuiOpenid",ret.user.openid); //用户id
+							}
+
+		                    localStorage.setItem("user_contact",ret.user.contact); //联系人姓名
+		                    localStorage.setItem("user_companyname",ret.user.companyname);//公司
+		                    localStorage.setItem("user_email",ret.user.email);//email
+		                    localStorage.setItem("user_mobile",ret.user.mobile);//手机
+						}
+						getBannerData();//获取首页banner
+                    }
+                },
+                error:function(err){
+//                  alert('登陆返回的错误：'+JSON.stringify(err));
+                    toast.hide();
+                    var message=err.responseJSON.error.message;
+	    			toast.fail({
+			            title:message,
+			            duration:2000
+			        },function(ret){
+		    		});
+                }
+            })
+    }
+    function openUrl(url){
+        zhuge.track("微信_csp_首页");
+        window.location.href = BASE_URL+url;
+    }
+    // 打开banner
+    function openBanner(id){
+        zhuge.track("微信_csp_轮播");
+        window.location.href = BASE_URL+"/html/csp2/event_detail_frm.html"+"?id="+id;
+    }
+    // 获取地址栏参数
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+</script>
+</html

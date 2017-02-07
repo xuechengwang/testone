@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">渠道服务</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <style>
+    	img{
+    		max-height:100%;
+    	}
+    	.height-tag{
+		    display: -webkit-box;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    word-wrap: break-word;
+		    word-break: break-all;
+		    white-space: normal !important;
+		    -webkit-line-clamp: 3;
+		    -webkit-box-orient: vertical;
+		}
+		.height-tag-1{
+		    display: -webkit-box;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    word-wrap: break-word;
+		    word-break: break-all;
+		    white-space: normal !important;
+		    -webkit-line-clamp: 1;
+		    -webkit-box-orient: vertical;
+		}
+    #qdfwxq>iframe{
+        width: 100%;
+        height: 100%;
+        border: none;
+        position: absolute;
+        z-index: 10000;
+    }
+    </style>
+</head>
+<body>
+    <section id="qdfwxq" class="aui-hide frame-section">
+        <iframe name="qdfwxq" src="http://intel.apithink.com/html/icafe/qdfwxq.html"></iframe>
+    </section>
+    <!-- 渠道服务页面 -->
+    <section id="main">
+        <!-- 滑动页 -->
+        <div class="aui-tab" id="tab">
+            <div class="aui-tab-item aui-active">网吧案列</div>
+            <div class="aui-tab-item">SMB案列</div>
+            <div class="aui-tab-item">质保服务</div>
+        </div>
+
+        <!-- 网吧案例、SMB案例 -->
+        <section id="data-list-tpl-0">
+            <div class="aui-content aui-margin-b-15">
+                <ul class="aui-list aui-media-list" id="list">
+                </ul>
+            </div>
+        </section>
+
+        <!-- 质保服务 -->
+        <section id="data-list-tpl-2" class="aui-hide">
+            <div class="aui-content-padded aui-margin-b-15">
+                 <div class="aui-crad-list">
+                     <div class="aui-crad-list-header text-9e9e9e font-size-13">若您有售后服务需求，请关注微信公众号“英特尔客户支持”</div>
+                     <div class="aui-crad-list-content aui-text-center aui-margin-t-30" style="margin-top:1.2rem;">
+                         <img src='../../image/icafe_scan.png' style="width: 7rem;height: 7rem;">
+                     </div>
+                     <div class="aui-crad-list-footer text-9e9e9e font-size-13 aui-margin-t-15">
+                         服务内容包括：盒装处理器验证、处理器及固态硬盘保修信息查询、渠道自助质保订单申请、质保订单进展查询等。平台内同时也包括大量技术资料供您轻松查询。欢迎您关注公众号，享受各项售后自助服务 ！
+                     </div>
+                     <div class="aui-crad-list-footer" style="margin-top:1rem;">
+                         <p class="text-666666 font-size-13">电话服务热线：<p>
+                         <p class="text-9e9e9e font-size-13">支持时间是周一至周五  9:00-17:00（国家法定节假日除外）<p>
+                         <p class="text-9e9e9e font-size-13">中国大陆<p>
+                         <p class="text-9e9e9e font-size-13">800-820-1100（固话）  400-920-2200（手机）</p>
+                     <div>
+
+                 </div>
+
+            </div>
+        </section>
+    </section>
+	
+
+</body>
+
+<!-- 模板 -->
+
+<script type="text/x-dot-template" id="list-tpl">
+
+    {{for(var i in it){}}
+
+    <li class="aui-list-item" data-id="{{=it[i].id}}" onclick="openUrl('{{=it[i].id}}')">
+
+        <div class="aui-media-list-item-inner">
+
+
+
+            <div class="aui-list-item-media" style="width: 6.5rem; height: 5.6rem">
+				{{?it[i].pictures && it[i].pictures.length}}
+                <img src="{{=it[i].pictures[0].url}}">
+				{{?}}
+            </div>
+
+
+
+            <div class="aui-list-item-inner">
+
+                <div class="aui-list-item-text">
+
+                    <div class="aui-list-item-title aui-font-size-16">
+
+                    <div class="height-tag-1">{{=it[i].title}}</div></div>
+
+                </div>
+
+                {{?it[i].abstract}}
+
+                <div class="aui-list-item-text aui-font-size-14 ">
+
+                   <div class="height-tag"> {{=it[i].abstract}} </div>
+
+                </div>
+
+                {{?}}
+
+                <div class="aui-list-item-footer" style="position:absolute;bottom:0rem;right:1rem;">
+
+                     <i class="aui-iconfont aui-icon-date text-747474">  {{=formatTime(it[i].releasedate)}}</i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </li>
+
+    {{ } }}
+
+</script>
+
+<script type="text/javascript" src="../../script/common.js"></script>
+
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+
+<script type="text/javascript">
+
+    var toast = new auiToast();
+
+    var pageNo = 0; //根据文档要求pageNo为0，对应文档中的skip参数
+
+    var loadStatus = true; //判断加载的状态
+
+    var DATA_URL = '/jyh_factresources/InternetCafesCase'; //定义全局获取地址,初始为网吧案例列表
+
+	var tab = new auiTab({
+        element:document.getElementById("tab"),
+        index:1,
+        repeatClick:false
+    },function(ret){
+        pageNo = 0; //重置页面
+        $("#list").html(''); //清空页面
+        if(ret.index == 3){
+            $('#data-list-tpl-0').hide(); //隐藏前两项
+            $('#data-list-tpl-2').removeClass('aui-hide'); //显示第三项
+        }else{
+            $('#data-list-tpl-2').addClass('aui-hide'); //隐藏第三项
+            $('#data-list-tpl-0').show(); //显示第三项
+            ret.index == 1 ? DATA_URL = '/jyh_factresources/InternetCafesCase' : DATA_URL = '/jyh_factresources/GetIcafeSMBretailList'; //判断 index 显示第一项还是第二项
+
+            toast.loading({
+
+                title:"加载中",
+
+                duration:2000
+
+            },function(ret){
+
+                // 加个延时让loading效果显示会
+
+                setTimeout(function(){
+
+                    getData();
+
+                }, 500)
+
+            });
+        }
+    });
+
+    $(function(){
+
+        window.onpopstate = function(e) {
+            // getData(param); //获取数据
+            document.getElementById('qdfwxq').classList.add('aui-hide');
+            document.getElementById('main').classList.remove('aui-hide');
+        }
+        toast.loading({
+
+            title:"加载中",
+
+            duration:2000
+
+        },function(ret){
+
+            // 加个延时让loading效果显示会
+
+            setTimeout(function(){
+
+                getData();
+
+            }, 500)
+
+        });
+
+    })
+
+    // 打开详情页
+    function openUrl(id){
+         zhuge.track("微信_icafe_渠道服务");
+        history.pushState(id, '微信_icafe_渠道服务', 'http://intel.apithink.com/html/bvar/qdfw.html');
+        window.qdfwxq.init(id);
+        document.getElementById('qdfwxq').classList.remove('aui-hide');
+        document.getElementById('main').classList.add('aui-hide');
+        // window.location.href = BASE_URL + '/html/icafe/qdfwxq.html?id=' + id;
+    }
+
+    // 判断滚动到底部后加载数据
+
+    $(window).scroll(function(){
+
+    　　var scrollTop = $(this).scrollTop();
+
+    　　var scrollHeight = $(document).height();
+
+    　　var windowHeight = $(this).height();
+
+    　　if(scrollTop + windowHeight == scrollHeight && loadStatus){//当滑动到底部并且loadStatus为true时加载
+
+    　　　　getData();
+
+    　　}
+
+    });
+
+    function getData(){
+
+        // 当正在加载数据时，将loadStatus设置为false，防止滑动到底部重复加载
+
+        loadStatus = false;
+
+        var skip = pageNo * 15;
+
+        $.ajax({
+
+            url:INTEL_API_URL_B+DATA_URL,
+
+            type:'POST',
+
+            data:{
+
+                skip:skip,
+
+                limit:15
+
+            },
+
+            success:function(ret){
+				console.log(JSON.stringify(ret));
+                // 有数据返回时
+
+                if(ret && ret.data && ret.data.length){
+
+                    var tempFn = doT.template($("#list-tpl").html());
+
+                    $("#list").append(tempFn(ret.data));
+
+                    // 因为默认就显示了loading效果，也就是当pageNo分页等于0的时候显示，那么当pageNo等于0的时候将loading隐藏
+
+                    if(pageNo == 0){
+
+                        toast.hide();
+
+                    }
+
+                    // 成功写入数据后pageNo递增
+
+                    pageNo++;
+
+                    // 将loadStatus设置为true，可以继续加载数据喽
+
+                    loadStatus = true;
+
+                }else{
+					toast.hide();
+                    // 当没有数据返回并且pageNo等于0时，说明没有数据（当没有数据返回并且pageNo大于0时，说明没有更多了）
+
+                    if(pageNo == 0){
+
+                        // 暂无数据
+
+                        $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">暂无数据</p>');
+
+                    }else{
+
+                         $("#list").append('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">没有更多了</p>');
+
+                    }
+
+                    // 既然没有数据也没有更多了，就将loadStatus设置为false，不允许加载了
+
+                    loadStatus = false;
+
+                }
+
+            },
+
+            error:function(){
+
+                // 错误处理
+
+                toast.hide();
+
+                loadStatus = false;
+
+                $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">出错啦</p>');
+
+            }
+
+        })
+
+    }
+
+</script>
+</html>

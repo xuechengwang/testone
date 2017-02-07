@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">我要得奖励</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <style>
+        .height-tag{
+            height: 1.8rem;
+            line-height: 1.8rem;
+            border-bottom: 1px solid #dddddd;
+        }
+        .input-style{
+            position: relative;
+            top: 0.4rem;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- 我要得奖励_项目类型-->
+    <section>
+        <div class="aui-content-padded">可选类型</div>
+        <div id="list">
+
+        </div>
+    </section>
+</body>
+<script type="text/x-dot-template" id="list-tpl">
+    {{for(var i in it){ }}
+    <div class="aui-border-bottom bg-ffffff aui-padded-l-15 height-tag">
+        {{? it[i].productbrandtype}}
+        <input type="radio" name="type" class="aui-radio input-style" onclick="getChecked('{{=it[i].productbrandtype}}','{{=it[i].id}}')">
+        <span class="aui-font-size-16 text-666666">{{=it[i].productbrandtype}}</span>
+        {{?? it[i].cputype}}
+        <input type="radio" name="type" class="aui-radio input-style" onclick="getChecked('{{=it[i].cputype}}','{{=it[i].id}}')">
+        <span class="aui-font-size-16 text-666666">{{=it[i].cputype}}</span>
+        {{?}}
+    </div>
+    {{}}}
+</script>
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript">
+    $(function() {
+        // getData('project');
+    })
+    var dataType; // 定义类型为 品牌还是 cpu
+    // 选中即退回到 parent 窗口
+    function getChecked(projectname, projectnameid) {
+        window.parent.cpxx.setprojectnameid(projectnameid, dataType, projectname);
+        window.parent.document.getElementById('cpxx-frame').classList.remove('aui-hide');
+        window.parent.document.getElementById('cpxxlist-frame').classList.add('aui-hide');
+    }
+
+    // 获取数据
+    function getData(dataArr, type) {
+        var listFn = doT.template($('#list-tpl').html());
+        $('#list').html(listFn(dataArr));
+        dataType = type;
+    }
+</script>
+</html>

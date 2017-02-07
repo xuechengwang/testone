@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<meta charset="UTF-8">
+
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+
+    <title class="aui-text-center">资讯考试</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <style>
+
+     body{
+     	background: #ffffff;
+     }
+
+     #allbtn-classify{
+
+        height: 2rem;
+
+        line-height: 2rem;
+
+     }
+	 #record{
+            position: fixed;
+            bottom: 2rem;
+            right: 1rem;
+            color: #fff;
+            background: #009ce9;
+            border-radius: 50%;
+            padding: 0.3rem 0.7rem;
+            z-index: 800;
+        }
+		img{
+	     	max-height:100%;
+	     }
+		iframe{
+        width: 100%;
+        height: 100%;
+        border: none;
+        position: absolute;
+        z-index: 10000;
+    }
+    </style>
+
+</head>
+
+<body>
+	<!-- 在线考试页面 -->
+    <section id="ksxq" class="aui-hide frame-section">
+        <iframe name="ksxq" src="http://intel.apithink.com/html/icafe/ksxq.html"></iframe>
+    </section>
+        <!-- 考试记录 -->
+    <section id="ksjl" class="aui-hide frame-section">
+        <iframe name="ksjl" src="http://intel.apithink.com/html/icafe/ksjl.html"></iframe>
+    </section>
+
+
+    <!-- 在线考试页面 -->
+
+
+
+    <!-- 筛选 -->
+
+   <!--  <section class="aui-content" id="allbtn-classify">
+
+        <div class="aui-text-center text-747474 aui-padded-l-15 aui-padded-r-15">
+
+            全部 <i class="aui-iconfont aui-icon-down"></i>
+
+        </div>
+
+    </section> -->
+    <!-- 滑动页 -->
+    <div class="aui-tab" id="tab">
+        <div class="aui-tab-item aui-active">未开始</div>
+        <div class="aui-tab-item">进行中</div>
+        <div class="aui-tab-item">已结束</div>
+    </div>
+
+    <!-- 考试信息 -->
+    <section id="data-list-tpl-0">
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-media-list" id="list">
+            </ul>
+        </div>
+    </section>
+	<section class="aui-font-size-14" id="record" onclick="openKsjl()">
+	考试<br />
+        记录
+    </section>
+</body>
+
+<!-- 模板 -->
+
+<script type="text/x-dot-template" id="list-tpl">
+
+    {{for(var i in it){}}
+	{{? examtype == 1}}
+    <li class="aui-list-item" onclick="openUrl('{{=it[i]._id}}')">
+	{{??}}
+	<li class="aui-list-item" style="position:relative;">
+	<div style="position:absolute;width:100%;height:100%;background:rgba(200,200,200,0.3);z-index:500;margin-left:-0.75rem;"></div>
+	{{?}}
+        <div class="aui-media-list-item-inner">
+
+
+
+            <div class="aui-list-item-media" style="width: 6.5rem; height: 5.6rem">
+				{{?it[i].pictures && it[i].pictures.length}}
+                <img src="{{=it[i].pictures[0].url}}">
+				{{?}}
+            </div>
+
+
+
+            <div class="aui-list-item-inner" style="position:relative;overflow: hidden;">
+
+                <div class="aui-list-item-text">
+
+                    <div class="aui-list-item-title aui-font-size-16" style="line-height:0.8rem;">{{=it[i].examname||''}}</div>
+
+                </div>
+
+                {{?it[i].introduction}}
+
+                <div class="aui-list-item-text aui-font-size-14 heightTag" style="line-height:0.8rem;margin-top:0.2rem;">
+
+                    {{=it[i].introduction||''}}
+
+                </div>
+
+                {{?}}
+
+                <div class="aui-list-item-footer" style="position:absolute;bottom:0.2rem;right:1rem;">
+
+                     <i class="aui-iconfont aui-icon-date text-747474">  {{=formatTime(it[i].startdate)}}</i>
+
+                     {{? examtype == 2}}
+                     <span class="text-a1a1a1 aui-padded-l-15 aui-font-size-14">未开始</span>
+                     {{?? examtype == 1}}
+                     <span class="text-a1a1a1 aui-padded-l-15 aui-font-size-14">已参加</span>
+                     {{?? examtype == 0}}
+                     <span class="text-a1a1a1 aui-padded-l-15 aui-font-size-14">已结束</span>
+                     {{?}}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </li>
+
+    {{ } }}
+
+</script>
+
+<script type="text/javascript" src="../../script/common.js"></script>
+
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+
+<script type="text/javascript">
+
+    var examtype = 2; //定义类型，初始化为未开始
+
+    var toast = new auiToast();
+
+    var pageNo = 1; //根据文档要求pageNo为0，对应文档中的 current 参数
+
+    var loadStatus = true; //判断加载的状态
+
+//  var DATA_URL = '/jyh_dimexams/getCSPTrainExamPaperList'; //定义全局获取地址,初始为未开始列表
+//	 var token="?access_token=2JFkLwPi5HusOjsk0gjPdSiHe5vGbR2WW1wEgvADocLRVqtMBwgb14vPnlCqCT0N";
+		var token = "?access_token="+localStorage.getItem('token');
+		//如果未登录直接跳登录页
+	if(!localStorage.getItem('token')){
+			window.location.href = BASE_URL+'/html/register/icafe_register.html';
+	}
+    var tab = new auiTab({
+        element:document.getElementById("tab"),
+        index:1,
+        repeatClick:false
+    },function(ret){
+        pageNo = 1; //重置页面
+        $("#list").html(''); //清空页面
+        if(ret.index == 1){
+            examtype = 2; //未开始
+        }else if(ret.index == 2){
+            examtype = 1; //进行中
+        }else{
+            examtype = 0; //已结束
+        }
+
+        toast.loading({
+
+            title:"加载中",
+
+            duration:2000
+
+        },function(ret){
+
+            // 加个延时让loading效果显示会
+
+            setTimeout(function(){
+
+                getData();
+
+            }, 500)
+
+        });
+    });
+
+    $(function(){
+		window.onpopstate = function(e) {
+            // getData(param); //获取数据
+            var searchStr = window.location.search.substr(1); //获得当前页面搜索数据
+            document.getElementById('ksxq').classList.add('aui-hide');
+            document.getElementById('ksjl').classList.add('aui-hide');
+            document.title="资讯考试";
+            document.getElementById('main').classList.remove('aui-hide');
+        }
+        toast.loading({
+
+            title:"加载中",
+
+            duration:2000
+
+        },function(ret){
+
+            // 加个延时让loading效果显示会
+
+            setTimeout(function(){
+
+                getData();
+
+            }, 500)
+
+        });
+
+    })
+
+    // 打开详情页
+    function openUrl(id){
+         zhuge.track("微信_icafe_考试详情");
+         history.pushState(id, '微信_icafe_考试详情', 'http://intel.apithink.com/html/icafe/zxks.html?type=xq');
+        window.ksxq.init(id, examtype);
+        document.getElementById('ksxq').classList.remove('aui-hide');
+        document.title="考试名称";
+        document.getElementById('main').classList.add('aui-hide');
+//      window.location.href = BASE_URL + '/html/icafe/ksxq.html?id=' + id;
+    }
+
+    // 判断滚动到底部后加载数据
+
+    $(window).scroll(function(){
+
+    　　var scrollTop = $(this).scrollTop();
+
+    　　var scrollHeight = $(document).height();
+
+    　　var windowHeight = $(this).height();
+
+    　　if(scrollTop + windowHeight == scrollHeight && loadStatus){//当滑动到底部并且loadStatus为true时加载
+
+    　　　　getData();
+
+    　　}
+
+    });
+
+    function getData(){
+//  	console.log("提交的数据："+examtype);
+        // 当正在加载数据时，将loadStatus设置为false，防止滑动到底部重复加载
+
+        loadStatus = false;
+
+        var url=INTEL_API_URL_B+'/jyh_dimexams/getIcafeTrainExamPaperList'+token;
+
+        $.ajax({
+
+            url:url,
+
+            type:'POST',
+
+            data:{
+
+                current: pageNo,
+
+                pagesize: 10,
+
+                examtype: examtype
+
+            },
+
+            success:function(ret){
+                // 有数据返回时
+
+                if(ret && ret.data && ret.data.length){
+//                     console.log(JSON.stringify(ret.data));
+
+                    var tempFn = doT.template($("#list-tpl").html());
+
+                    $("#list").append(tempFn(ret.data));
+
+                    // 因为默认就显示了loading效果，也就是当pageNo分页等于0的时候显示，那么当pageNo等于0的时候将loading隐藏
+
+                    if(pageNo == 1){
+
+                        toast.hide();
+
+                    }
+
+                    // 成功写入数据后pageNo递增
+
+                    pageNo++;
+
+                    // 将loadStatus设置为true，可以继续加载数据喽
+
+                    loadStatus = true;
+
+                }else{
+					toast.hide();
+                    // 当没有数据返回并且pageNo等于0时，说明没有数据（当没有数据返回并且pageNo大于0时，说明没有更多了）
+
+                    if(pageNo == 0){
+
+                        // 暂无数据
+
+                        $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">暂无数据</p>');
+
+                    }else{
+
+                         $("#list").append('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">没有更多了</p>');
+
+                    }
+
+                    // 既然没有数据也没有更多了，就将loadStatus设置为false，不允许加载了
+
+                    loadStatus = false;
+
+                }
+
+            },
+
+            error:function(err){
+
+                // 错误处理
+
+                toast.hide();
+
+                loadStatus = false;
+
+                $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">出错啦</p>');
+
+            }
+
+        })
+
+    }
+
+    // 获取时间格式 (精确到天)
+    function formatTime(timeStr){
+        var str = timeStr.substr(0, 10);
+        str = str.replace(/-/g,"/");
+        return str;
+    }
+	// 借测记录
+    function openKsjl(){
+         zhuge.track("微信_icafe_考试记录");
+        window.location.href = BASE_URL + '/html/icafe/ksjl.html';
+    }
+</script>
+
+</html>

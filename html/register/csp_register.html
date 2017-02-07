@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');
+            var token = localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <style>
+        body{
+            background-color: #ffffff;
+        }
+       input[type="text"],input[type="number"]{
+       		/*width:65%;*/
+       		min-height:1.6rem;
+       		display:inline-block;
+       		border:1px solid #ddd;
+       		border-radius:0.5rem;
+            padding-left: 0.25rem;
+       }
+       ul li .text-right{
+       		line-height:1.3rem;
+       }
+       ul li.aui-card-list{
+       		margin-bottom: 0;
+       }
+       .mr-top-all{
+       		margin-top:10%;
+       }
+       .aui-btn{
+       		padding: 0.1rem 0.6rem;
+       		border-radius: 0.5rem;
+            line-height: 1.4rem;
+            width: 100%;
+       }
+       ul li .fason{
+       		width:45%;
+       }
+       .aui-list .aui-list-item {
+            margin-bottom: 0.5rem;
+       }
+       .aui-list .aui-list-item:after {
+            width: 100%;
+            height: 0;
+        }
+       .aui-list .aui-list-item-label {
+            width: 5rem !important;
+            min-width: 5rem;
+            max-width: 5rem;
+            display: block;
+            text-align: right;
+            align-items: flex-end;
+            font-size: 0.7rem;
+            color: #777777;
+            padding-right: 0.5rem;
+       }
+    </style>
+</head>
+<body>
+	 <!--注册页面-->
+  	<section class="mr-top-all">
+        <ul class="aui-list aui-form-list aui-list-noborder aui-padded-r-15">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            公司名称
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" placeholder="" id="companyname">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            联系人姓名
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" placeholder="" id="contact">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            手机号
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="number" pattern="[0-9]*" placeholder="" id="mobile">
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            验证码
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="number" pattern="[0-9]*" placeholder="" id="code">
+                        </div>
+                        <div class="aui-list-item-label aui-padded-r-15" style="width: 4rem;min-width: 4rem;">
+                            <div class="aui-btn aui-btn-outlined aui-btn-sm aui-btn-info" onclick="sendSms()" status="1" id="sendVerify">发送</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+  		<div class="aui-card-list text-808080 mr-top-15">
+            <div class="aui-card-list-footer aui-text-center font-size-13">
+                <span class="submit-tag bg-009ce9-blue aui-font-size-14" onclick="register()">注册<span>
+            </div>
+        </div>
+  	</section>
+    <section style="padding:1.5rem;">
+    <div style="border:1px solid #ddd;-webkit-box-shadow:0 0 10px rgba(0, 204, 204, .5);padding:0.5rem;">
+        英特尔致力于尊重您的隐私权。 您填写此表格，即表明您向英特尔提供您的个人信息。这些信息将仅用于直接向您发送与英特尔相关
+的信息。了解有关英特尔隐私惯例的更多信息，请访问:
+<div href="" onclick="openUrl()" style="display:inline-block;line-height:0.7rem !important;">http://www.intel.cn/content/www/cn/zh/privacy/intel-privacy-notice.html</div></div>
+    </section>
+</body>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/aui-dialog.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+    var dialog = new auiDialog();
+    var toast = new auiToast();
+    var partten = /^1[3-9]\d{9}$/;
+    var _CODE;
+    var urlCode=getQueryString("code");
+	function register(){
+//		alert('服务器地址：'+INTEL_API_URL_B);
+        var companyname = $("#companyname").val();
+        var contact = $("#contact").val();
+        var mobile = $("#mobile").val();
+        var code = $("#code").val();
+        if(!companyname || !contact || !mobile || !code){
+            dialog.alert({
+                title:"提示消息",
+                msg:'请输入完整的注册信息',
+                buttons:['确定']
+            },function(ret){
+            })
+            return;
+        }
+        if(!partten.test(mobile)){
+            dialog.alert({
+                title:"提示消息",
+                msg:'请输入正确的手机号',
+                buttons:['确定']
+            },function(ret){
+            })
+            return;
+        }
+        toast.loading({
+            title:"注册中...",
+            duration:2000
+        },function(ret){
+        });
+        var datas={
+                companyname:companyname,
+                contact:contact,
+                mobile:mobile,
+                roleid:1,
+                phone_captcha: code,//验证码
+                code:urlCode//地址栏code
+            };
+            if(localStorage.getItem("jingyinghuiOpenid")){
+            	datas.openid=localStorage.getItem("jingyinghuiOpenid");
+            }
+//          alert('提交的数据：'+JSON.stringify(datas));
+        $.ajax({
+            type : "POST",
+            url:INTEL_API_URL_B+"/users/wxRegisterUser",
+            data :datas ,
+            success : function(ret, status) {
+            	toast.hide();
+//       	alert('注册后返回的数据：'+JSON.stringify(ret));
+                if(ret && ret.success == true){
+                    localStorage.setItem("userid",ret.user.userid); //用户id
+                    localStorage.setItem("user_contact",ret.user.contact); //联系人姓名
+                    localStorage.setItem("user_companyname",ret.user.companyname);//公司
+                    localStorage.setItem("user_email",ret.user.email);//email
+                    localStorage.setItem("user_mobile",ret.user.mobile);//手机
+                    localStorage.setItem("token",ret.user.token);//token
+                    if(ret.user.openid){
+                    	localStorage.setItem("jingyinghuiOpenid",ret.user.openid);//openid
+                    }
+                    dialog.alert({
+                        title:"提示消息",
+                        msg:'注册成功',
+                        buttons:['好']
+                    },function(ret){
+                        if(ret){
+                            zhuge.track("微信_csp_注册");
+                            window.location.href=document.referrer;
+                        }
+                    })
+                }else if(ret.message){
+                	dialog.alert({
+                        title:"提示消息",
+                        msg:ret.message,
+                        buttons:['好']
+                    },function(ret){
+                    })
+                }
+                // if(ret.code){
+                //     dialog.alert({
+                //         title:"提示消息",
+                //         msg:'发送成功，请注意查收',
+                //         buttons:['好']
+                //     },function(ret){
+                //     })
+                // }else{
+                //     dialog.alert({
+                //         title:"提示消息",
+                //         msg:ret.msg,
+                //         buttons:['好']
+                //     },function(ret){
+                //     })
+                //     return;
+                // }
+            },
+            error: function(err){
+//          	alert(JSON.stringify(err));
+            	toast.hide();
+				var message=err.responseJSON.error.message;
+				dialog.alert({
+                    title:"发送失败，请核对账号后重新发送",
+					msg:message,
+                    buttons:['好']
+                },function(ret){
+                })
+            }
+        });
+    }
+    function sendSms(){
+        var mobile = $("#mobile").val();
+        if(!partten.test(mobile)){
+            dialog.alert({
+                title:"提示消息",
+                msg:'请输入正确的手机号',
+                buttons:['确定']
+            },function(ret){
+            })
+            return;
+        }
+        $.ajax({
+            type : "POST",
+            url:INTEL_API_URL_B+"/randomCodes/getCodeByMobile",
+            data : {
+                loginname:mobile,
+                type:3
+            },
+            success : function(ret, status) {
+                if(ret.code){
+                    zhuge.track("微信_csp_手机验证");
+                    dialog.alert({
+                        title:"提示消息",
+                        msg:'发送成功，请注意查收',
+                        buttons:['好']
+                    },function(ret){
+                    })
+                    getVerify();
+                }else{
+                    dialog.alert({
+                        title:"提示消息",
+                        msg:ret.msg,
+                        buttons:['好']
+                    },function(ret){
+                    })
+                    return;
+                }
+            },
+            error: function(err){
+				var message=err.responseJSON.error.message;
+				dialog.alert({
+                    title:"发送失败，请核对账号后重新发送",
+					msg:message,
+                    buttons:['好']
+                },function(ret){
+                })
+            }
+        });
+    }
+    function getVerify() {
+        var mobile = $("#mobile").val();
+        var status = $("#sendVerify").attr("status");
+        if(status!=1){
+            return;
+        }
+        $("#sendVerify").attr("status",0);
+        $("#sendVerify").html('<span id="getVerify">50</span>s')
+        times = 49;
+        isinerval = setInterval("CountDown()", 1000);
+    }
+    function CountDown() {
+        if (times < 1) {
+            $("#sendVerify").attr("status",1);
+            $("#sendVerify").html("获取");
+            clearInterval(isinerval);
+            return;
+        }
+        $("#getVerify").html(times)
+        times--;
+    }
+    // 获取地址栏参数
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+    function openUrl(){
+    	window.location.href="http://www.intel.cn/content/www/cn/zh/privacy/intel-privacy-notice.html";
+    }
+</script>
+</html

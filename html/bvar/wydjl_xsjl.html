@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">我要得奖励</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <style>
+       .submit-tag{
+        color: #ffffff;
+        padding: 0.5rem 1.8rem;
+        border-radius: 1rem;
+    }
+    .aui-crad-list .aui-crad-list-footer{
+        height: 2.2rem;
+        line-height: 2.2rem
+    }
+    .status-tag{
+        position: relative;
+        top:7px;
+    }
+    .table{
+        width: 100%;
+        border:1px solid #dddddd;
+        border-collapse:collapse;
+        font-size:0.65rem;
+        text-align:center;
+        color:#666;
+    }
+    .table th,.table td {
+        padding:0.3rem 0;
+    }
+    .table th {
+        font-weight:normal;
+        background-color:#f6f6f6;
+    }
+    .border-bottom{
+        border-bottom: 1px solid #dddddd;
+    }
+    .border-right{
+        border-right:1px solid #dddddd;
+    }
+    .aui-list .aui-list-item:after {
+        content: none;
+    }
+</style>
+</head>
+<body>
+	<section id="list"></section>
+	<script type="text/x-dot-template" id="list-tpl">
+		<div class=" aui-padded-t-15 aui-padded-r-15 aui-padded-l-15 aui-padded-b-10 aui-font-size-16 bg-ffffff">
+           	本季度承诺销量：
+        </div>
+        <div class="aui-row aui-padded-r-15 aui-padded-l-15 aui-font-size-14 bg-ffffff text-999999">
+            <div class="aui-col-xs-6 ">英特尔固态硬盘：{{=it.SSD||''}}</div>
+            <div class="aui-col-xs-6">客户端（台）：{{=it.Client||''}}</div>
+            <div class="aui-col-xs-6 aui-padded-t-5 aui-padded-b-10">服务器（台）：{{=it.server||''}}</div>
+        </div>
+	</script>
+    <!-- 我要得奖励_销售记录-->
+    <section>
+        
+        <div class="aui-content bg-ffffff aui-margin-t-10" >
+            <div class="aui-padded-l-15 aui-padded-r-15 aui-padded-t-15 aui-padded-b-15">
+                <div class="aui-padded-b-15">销售数据</div>
+                <table class="table" >
+                    <tr class="border-bottom">
+                        <th class="border-right">第一季度</td>
+                        <th >英特尔固态硬盘</td>
+                        <th >服务器</td>
+                        <th >客户端</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td class="border-right">上季度销量</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td class="border-right">本季度承诺</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td class="border-right">本季度商机</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td class="border-right">本季度销量</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td class="border-right">凭证通过项目数</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td class="border-right">商机报备项目数</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td class="border-right">项目赢单奖励数</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2</td>
+                    </tr>
+                    <tr class="border-bottom">
+                        <td class="border-right">预计得积分</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td class="border-right">承诺人</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+<script type="text/javascript">
+    var toast = new auiToast();
+    var token = "?access_token="+localStorage.getItem('token');
+//  var token = "?access_token=2JFkLwPi5HusOjsk0gjPdSiHe5vGbR2WW1wEgvADocLRVqtMBwgb14vPnlCqCT0N";
+    var loadStatus = true; //判断加载的状态
+    $(function(){
+        toast.loading({
+            title:"加载中",
+            duration:2000
+        },function(ret){
+            // 加个延时让loading效果显示会
+            setTimeout(function(){
+                getData(); // 获取数据
+            }, 500)
+        });
+    })
+    //获取数据
+    function getData(){
+        // 调用服务器请求
+        $.ajax({
+            url: INTEL_API_URL_B+"/jyh_promises/viewThisQuarterSales" + token,
+            type: 'POST',
+            data: {},
+            success: function(ret){
+                toast.hide(); //隐藏 loading
+                console.log(JSON.stringify(ret));
+                   if(ret){
+                       var tempFn = doT.template($('#list-tpl').html());
+                       $('#list').append(tempFn(ret[0]));
+                   } else {
+                       
+                   }
+            },
+            error: function(err){
+                toast.hide(); //隐藏 loading
+                console.log(JSON.stringify(err));
+                $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">出错啦</p>');
+            }
+        })
+    }
+</script>
+</html>

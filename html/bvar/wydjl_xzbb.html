@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">我要得奖励</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <style>
+        .submit-tag-b{
+            padding: 0.5rem 0;
+            color: #ffffff;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            z-index: 9999;
+        }
+        .frame-section{
+            width: 100%;
+        }
+        iframe{
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        #laydate_box{
+            left:20% !important;
+        }
+        #laydate_ys{
+            width:6.1rem;
+        }
+    </style>
+
+</head>
+<body>
+    <section id="xmlx-frame" class="aui-hide frame-section">
+        <iframe name="xmlx" src="http://intel.apithink.com/html/bvar/wydjl_xmlx.html"></iframe>
+    </section>
+    <section id="cpxx-frame" class="aui-hide frame-section">
+        <iframe name="cpxx" src="http://intel.apithink.com/html/bvar/wydjl_cpxx.html"></iframe>
+    </section>
+    <section id="cpxxlist-frame" class="aui-hide frame-section">
+        <iframe name="cpxxlist" src="http://intel.apithink.com/html/bvar/wydjl_cpxxlist.html"></iframe>
+    </section>
+    <!-- 我要得奖励－新增报备-->
+    <section id="main" class="">
+        <div class="aui-content">
+            <div class="aui-info aui-padded-l-15 aui-font-size-16">项目信息</div>
+            <div class="aui-info bg-ffffff aui-padded-l-15 aui-border-b" style="height: 2rem !important;">
+                <div class="aui-info-item aui-font-size-12 text-999999">
+                    <input type="text" name="customername" placeholder="请输入产品名称">
+                </div>
+            </div>
+            <div class="aui-info bg-ffffff aui-padded-l-15 aui-border-b" style="height: 2rem !important;">
+                <div class="aui-info-item aui-font-size-12 text-999999">
+                    <input type="text" name="projectname" placeholder="请输入项目名称">
+                </div>
+            </div>
+            <div class="aui-info bg-ffffff aui-padded-l-15 aui-border-b" style="height: 2rem !important;">
+                <div class="aui-info-item aui-font-size-12 text-999999">
+                    <input type="text" onclick="laydate()" id="estimatesigningtime" name="estimatesigningtime" placeholder="请选择预计签约时间" readonly>
+                </div>
+            </div>
+            <div class="aui-info bg-ffffff aui-padded-l-15 aui-padded-r-15 aui-border-b">
+                <div class="aui-info-item aui-font-size-12">项目类型</div>
+                <div class="aui-info-item aui-font-size-12" onclick="openxmlxFrame('project')">
+                    <span class="aui-padded-r-10" data-name="project">请选择</span>
+                    <input type="hidden" name="projectnameid" id="projectnameid">
+                    <span class="aui-iconfont aui-icon-right aui-font-size-12"></span>
+                </div>
+            </div>
+            <div class="aui-info aui-padded-l-15 aui-font-size-16">产品信息</div>
+            <div class="aui-info bg-ffffff aui-padded-l-15 aui-padded-r-15 aui-border-b">
+                <div class="aui-info-item aui-font-size-12">英特尔固态硬盘</div>
+                <div class="aui-info-item aui-font-size-12" onclick="opencpxxFrame('PFIntelSSD')">
+                    <span class="aui-padded-r-10" data-name="PFIntelSSD">请选择</span>
+                    <input type="hidden" name="PFIntelSSD" id="PFIntelSSD">
+                    <span class="aui-iconfont aui-icon-right aui-font-size-12"></span>
+                </div>
+            </div>
+            <div class="aui-info bg-ffffff aui-padded-l-15 aui-padded-r-15 aui-border-b">
+                <div class="aui-info-item aui-font-size-12">服务器</div>
+                <div class="aui-info-item aui-font-size-12" onclick="opencpxxFrame('PFServer')">
+                    <span class="aui-padded-r-10" data-name="PFServer">请选择</span>
+                    <input type="hidden" name="PFServer" id="PFServer">
+                    <span class="aui-iconfont aui-icon-right aui-font-size-12"></span>
+                </div>
+            </div>
+            <div class="aui-info bg-ffffff aui-padded-l-15 aui-padded-r-15 aui-border-b">
+                <div class="aui-info-item aui-font-size-12">客户端</div>
+                <div class="aui-info-item aui-font-size-12" onclick="opencpxxFrame('PFClient')">
+                    <span class="aui-padded-r-10" data-name="PFClient">请选择</span>
+                    <input type="hidden" name="PFClient" id="PFClient">
+                    <span class="aui-iconfont aui-icon-right aui-font-size-12"></span>
+                </div>
+            </div>
+            <div class="aui-info bg-ffffff aui-padded-l-15 aui-padded-r-15 aui-border-b">
+                <div class="aui-info-item aui-font-size-12">教育Widi</div>
+                <div class="aui-info-item aui-font-size-12" onclick="opencpxxFrame('PFEducation')">
+                    <span class="aui-padded-r-10" data-name="PFEducation">请选择</span>
+                    <input type="hidden" name="PFEducation" id="PFEducation">
+                    <span class="aui-iconfont aui-icon-right aui-font-size-12"></span>
+                </div>
+            </div>
+            <div class="aui-info bg-ffffff aui-padded-l-15 aui-padded-r-15 aui-border-b">
+                <div class="aui-info-item aui-font-size-12">数字演播室</div>
+                <div class="aui-info-item aui-font-size-12" onclick="opencpxxFrame('PFDigitalStudio')">
+                    <span class="aui-padded-r-10" data-name="PFDigitalStudio">请选择</span>
+                    <input type="hidden" name="PFDigitalStudio" id="PFDigitalStudio">
+                    <span class="aui-iconfont aui-icon-right aui-font-size-12"></span>
+                </div>
+            </div>
+            <div class="aui-info bg-ffffff aui-padded-l-15 aui-padded-r-15 aui-border-b">
+                <div class="aui-info-item aui-font-size-12">教育电子白板</div>
+                <div class="aui-info-item aui-font-size-12" onclick="opencpxxFrame('PFEducationWhiteboard')">
+                    <span class="aui-padded-r-10" data-name="PFEducationWhiteboard">请选择</span>
+                    <input type="hidden" name="PFEducationWhiteboard" id="PFEducationWhiteboard">
+                    <span class="aui-iconfont aui-icon-right aui-font-size-12"></span>
+                </div>
+            </div>
+            <div class="aui-info bg-ffffff aui-padded-l-15 aui-padded-r-15 aui-border-b">
+                <div class="aui-info-item aui-font-size-12">IA解决方案</div>
+                <div class="aui-info-item aui-font-size-12" onclick="opencpxxFrame('PFIASolution')">
+                    <span class="aui-padded-r-10" data-name="PFIASolution">请选择</span>
+                    <input type="hidden" name="PFIASolution" id="PFIASolution">
+                    <span class="aui-iconfont aui-icon-right aui-font-size-12"></span>
+                </div>
+            </div>
+        </div>
+        <div class="aui-crad-list aui-content-padded" >
+            <div class="aui-crad-list-header ">
+                <p class="aui-font-size-12 text-999999">备注</p>
+                <p class="aui-font-size-12 text-999999">1、渠道需在5.31号之前承诺销量:</p>
+                <p class="aui-font-size-12 text-999999">2、仅承诺人能修改承诺销量，截止5.31号：</p>
+            </div>
+        </div>
+        <!-- 底部定位，设置一个空的高度div撑起底部定位的高度，否则遮住看不见。 -->
+        <div style="height: 2.5rem;width: 100%;"></div>
+
+        <!-- 底部提交按钮 -->
+        <div class="submit-tag-b bg-009ce9-blue aui-text-center" onclick="doReport()">
+             报备
+        </div>
+    </section>
+
+</body>
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript" src="../../script/laydate/laydate.js"></script>
+<script type="text/javascript">
+    var toast = new auiToast();
+    // localStorage.setItem('token', 'WErIanzdt7XMuAHmA1VOudYFPHvA1SbC0CRDgyP2ui3mo52bsxAl4Bs6HcRZ9Lww');
+    var token = "?access_token="+localStorage.getItem('token');
+//	var token = "?access_token=2JFkLwPi5HusOjsk0gjPdSiHe5vGbR2WW1wEgvADocLRVqtMBwgb14vPnlCqCT0N";
+    $(function() {
+        window.onpopstate = function(e) {
+            // getData(param); //获取数据
+            document.getElementById('xmlx-frame').classList.add('aui-hide');
+            document.getElementById('cpxx-frame').classList.add('aui-hide');
+            document.getElementById('cpxxlist-frame').classList.add('aui-hide');
+            document.getElementById('main').classList.remove('aui-hide');
+            alert("弹一下看看");
+        }
+        document.getElementById('xmlx-frame').style.height = window.innerHeight + 'px';
+        document.getElementById('cpxx-frame').style.height = window.innerHeight + 'px';
+        document.getElementById('cpxxlist-frame').style.height = window.innerHeight + 'px';
+        getNowTime();
+    })
+
+    // 打开 项目类型 iframe 页
+    function openxmlxFrame(type) {
+        window.xmlx.getData(type);
+        history.pushState(type, '新增报备', 'http://intel.apithink.com/html/bvar/wydjl_xzbb.html?a=1');
+        document.getElementById('xmlx-frame').classList.remove('aui-hide');
+        document.getElementById('main').classList.add('aui-hide');
+    }
+    // 打开产品信息 iframe 页
+    function opencpxxFrame(type) {
+        window.cpxx.getData(type);
+        history.pushState(type, '新增报备', 'http://intel.apithink.com/html/bvar/wydjl_xzbb.html?a=2');
+        document.getElementById('cpxx-frame').classList.remove('aui-hide');
+        document.getElementById('main').classList.add('aui-hide');
+    }
+
+    // 获得子页面类型信息
+    function getSelectInfo(projectname, projectnameid, typeId) {
+        $('[data-name="project"]').text(projectname);
+        $('#projectnameid').val(projectnameid);
+        document.getElementById('xmlx-frame').classList.add('aui-hide');
+        document.getElementById('main').classList.remove('aui-hide');
+    }
+
+    // 获得子页面产品信息
+    function getProductInfo(formData, PFTYPE, producttype) {
+        console.log(PFTYPE + ',,,' +producttype);
+        $('[data-name="'+ PFTYPE +'"]').text('点击查看已选项');
+        $('#' + PFTYPE + '').val(formData);
+        document.getElementById('cpxx-frame').classList.add('aui-hide');
+        document.getElementById('cpxxlist-frame').classList.add('aui-hide');
+        document.getElementById('main').classList.remove('aui-hide');
+    }
+
+    // 报备
+    function doReport() {
+        var formData = {};
+        var inputItems = document.querySelectorAll('input[name]');
+        for(var i = 0; i<inputItems.length; i++) {
+            if(!inputItems[i].value && inputItems[i].required) {
+                toast.fail({
+                    title: inputItems[i].placeholder,
+                    duration: 1000
+                })
+                return;
+            }
+            if(inputItems[i].value){
+                var str = inputItems[i].value;
+                console.log(str);
+                str = str.replace(/\\/g, '');
+                if(str.indexOf('productbrandtypeid') > -1){
+                    formData['' + inputItems[i].name + ''] = JSON.parse(str);
+                } else {
+                    formData['' + inputItems[i].name + ''] = str;
+                }
+            }
+        }
+        console.log('提交的数据2：'+JSON.stringify(formData));
+        toast.loading({
+            title: '提交中...',
+            duration: 500
+        }, function(ret) {
+            $.ajax({
+                url: INTEL_API_URL_B+"/jyh_dimbusinessreports/addReported" + token,
+                type: 'POST',
+                data: formData,
+                success: function(ret) {
+                    toast.hide();
+                    toast.success({
+                        title: '提交成功!',
+                        duration: 500
+                    })
+                    setTimeout(function() {
+                        // window.location.href = BASE_URL + '/html/bvar/wydjl2.html';
+                        window.history.go(-1);
+                    }, 500)
+                },
+                error: function(err) {
+                    toast.hide();
+                    toast.fail({
+                        title: err.responseJSON.error.message,
+                        duration: 2000
+                    })
+                    console.log(JSON.stringify(err));
+                }
+            })
+        })
+    }
+    // 获取当前时间
+    function getNowTime(){
+        // var now = new Date();
+        // var applydate = now.getFullYear() + '-' + (now.getMonth()+1) + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + '.' + now.getMilliseconds();
+        // console.log(applydate);
+        // $('#estimatesigningtime').val(applydate.substr(0,8));
+        // $('#estimatesigningtime').text(applydate.substr(0,10));
+    }
+
+</script>
+</html>

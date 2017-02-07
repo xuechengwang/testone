@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">我要得奖励</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <style>
+        .submit-tag-b{
+            padding: 0.5rem 0;
+            color: #ffffff;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+        .aui-col-xs-7,
+        .aui-col-xs-5{
+            padding-top: 5px;
+            height: 2.25rem;
+        }
+        .span-tag-one{
+            border-radius: 50%;
+            border:1px solid #999999;
+            padding: 3px 3px;
+        }
+        .span-tag-two{
+            border-radius: 1rem;
+            border:1px solid #999999;
+            width: 1.2rem;
+            height: 1.2rem;
+            padding:3px 1.4rem;
+            color: #999999;
+        }
+        .span-tag-three{
+            border-radius: 50%;
+            border:1px solid #009ce9;
+            padding: 3px 3px;
+            color: #009ce9;
+        }
+        .img-style{
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+        .img-style-two{
+            width: 2.3rem;
+            height: 1.5rem;
+        }
+        .aui-col-xs-4,
+        .aui-col-xs-3{
+            height: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 我要得奖励页面 -->
+    <!-- 滑动页 -->
+    <div class="aui-tab" id="tab">
+        <div class="aui-tab-item aui-active">承诺销售</div>
+        <div class="aui-tab-item">报备商机</div>
+        <div class="aui-tab-item">提交凭证</div>
+    </div>
+    <!-- 承诺销售 -->
+    <section id="data-list-tpl-0">
+        <div class="bg-ffffff">
+            <div class="aui-content aui-padded-t-15 aui-padded-l-15 aui-padded-r-15 aui-padded-b-15 aui-media-list" >
+                <div class="aui-list-header aui-text-center aui-font-size-16">本季度承诺销量</div>
+            </div>
+            <div class="aui-row aui-padded-l-15 aui-padded-r-15 aui-font-size-14">
+                <div class="aui-col-xs-7">服务器（台）：</div>
+                <div class="aui-col-xs-5 aui-text-center">
+                    <span class="aui-iconfont aui-icon-minus span-tag-one" onclick="doReduce('server')"></span>
+                    <span class="aui-text-center span-tag-two" data-name="server">1</span>
+                    <span class="aui-iconfont aui-icon-plus span-tag-three" onclick="doAdd('server')"></span>
+                </div>
+            </div>
+            <div class="aui-row aui-padded-l-15 aui-padded-r-15 aui-font-size-14">
+                <div class="aui-col-xs-7">客户端（台）：</div>
+                <div class="aui-col-xs-5 aui-text-center">
+                    <span class="aui-iconfont aui-icon-minus span-tag-one" onclick="doReduce('Client')"></span>
+                    <span class="aui-text-center span-tag-two" data-name="Client">1</span>
+                    <span class="aui-iconfont aui-icon-plus span-tag-three" onclick="doAdd('Client')"></span>
+                </div>
+            </div>
+            <div class="aui-row aui-padded-l-15 aui-padded-r-15 aui-font-size-14">
+                <div class="aui-col-xs-7">英特尔固态硬盘（个）：</div>
+                <div class="aui-col-xs-5 aui-text-center">
+                    <span class="aui-iconfont aui-icon-minus span-tag-one" onclick="doReduce('SSD')"></span>
+                    <span class="aui-text-center span-tag-two" data-name="SSD">1</span>
+                    <span class="aui-iconfont aui-icon-plus span-tag-three" onclick="doAdd('SSD')"></span>
+                </div>
+            </div>
+        </div>
+        <div class="aui-pull-right aui-font-size-14 aui-content-padded text-009ce9" onclick="viewSales()">查看销售数据</div>
+        <div class="aui-crad-list aui-content-padded mr-top-45" >
+            <div class="aui-crad-list-header ">
+                <p class="font-size-13 text-808080">备注</p>
+                <p class="font-size-13 text-808080">1、渠道需在5.31号之前承诺销量:</p>
+                <p class="font-size-13 text-808080">2、仅承诺人能修改承诺销量，截止5.31号：</p>
+            </div>
+        </div>
+        <!-- 底部定位，设置一个空的高度div撑起底部定位的高度，否则遮住看不见。 -->
+        <div style="height: 2.5rem;width: 100%;"></div>
+        <!-- 底部提交按钮 -->
+        <div class="submit-tag-b bg-009ce9-blue aui-text-center" onclick="doSubmitSales()">
+             提交
+        </div>
+    </section>
+    <!-- 报备商机 -->
+    <section id="data-list-tpl-1" class="aui-hide aui-margin-t-10">
+        <section id="list">
+
+        </section>
+        <!-- 底部定位，设置一个空的高度div撑起底部定位的高度，否则遮住看不见。 -->
+        <div style="height: 2.5rem;width: 100%;"></div>
+        <!-- 底部提交按钮 -->
+        <div class="submit-tag-b bg-009ce9-blue aui-text-center" onclick="addReport()">
+             新增报备
+        </div>
+    </section>
+    <!-- 提交凭证 -->
+    <section id="data-list-tpl-2" class="aui-hide">
+    <section class="aui-content aui-text-center">
+        <div class="aui-content aui-margin-b-15">
+            <div class="aui-crad-list" style="margin-top:10rem;">
+                <div class="aui-crad-list-header aui-text-center"><i class="aui-iconfont aui-icon-gear aui-font-size-14"></i></div>
+                <div class="aui-crad-list-footer aui-text-center aui-font-size-12 ">正在建设中，敬请期待…</div>
+            </div>
+        </div>
+    </section>
+    </section>
+</body>
+<script type="text/x-dot-template" id="list-tpl">
+    {{for(var i in it){ }}
+        <div class="bg-ffffff aui-margin-t-10">
+            <div class="aui-row aui-padded-l-15 aui-padded-r-15 aui-padded-t-15">
+                <div class="aui-col-xs-6 aui-font-size-14">
+                    报备人 <span class="contact">{{=it[i].contact||'本人'}}</span>
+                </div>
+                <div class="aui-col-xs-6 aui-text-right aui-font-size-14 text-009ce9">{{=it[i].activeresults||''}}</div>
+            </div>
+            <div class="aui-content aui-padded-l-15 aui-padded-r-15">
+                <div class="aui-row aui-border-b aui-padded-b-10 aui-padded-t-5">
+                    <div class="aui-col-xs-6 aui-font-size-12 text-333333">
+                        报备时间：{{=formatTime(it[i].createdate)}}
+                    </div>
+                    <div class="aui-col-xs-6 aui-font-size-12 aui-text-right text-333333">
+                        预签约时间:{{=formatTime(it[i].estimatesigningtime)}}
+                    </div>
+                </div>
+            </div>
+            <div class="aui-grid">
+                <div class="aui-row">
+                    {{? it[i].PFServer}}
+                    <div class="aui-col-xs-3">
+                        {{? it[i].PFServer.businessPicture}}
+                        <img src="{{=it[i].PFServer.businessPicture}}" data-echo="{{=it[i].PFServer.businessPicture}}" class="img-style">
+                        {{?}}
+                        <div class="aui-grid-label aui-font-size-12">服务器:{{=it[i].PFServer.qty||0}}</div>
+                    </div>
+                    {{?}}
+                    {{? it[i].PFClient}}
+                    <div class="aui-col-xs-3">
+                        {{? it[i].PFClient.businessPicture}}
+                        <img src="{{=it[i].PFClient.businessPicture}}" data-echo="{{=it[i].PFClient.businessPicture}}" class="img-style">
+                        {{?}}
+                        <div class="aui-grid-label aui-font-size-12">客户端:{{=it[i].PFClient.qty||0}}</div>
+                    </div>
+                    {{?}}
+                    {{? it[i].PFEducation}}
+                    <div class="aui-col-xs-3">
+                        {{? it[i].PFEducation.businessPicture}}
+                        <img src="{{=it[i].PFEducation.businessPicture}}" data-echo="{{=it[i].PFEducation.businessPicture}}" class="img-style">
+                        {{?}}
+                        <div class="aui-grid-label aui-font-size-12">教育widi:{{=it[i].PFEducation.qty||0}}</div>
+                    </div>
+                    {{?}}
+                    {{? it[i].PFDigitalStudio}}
+                    <div class="aui-col-xs-3">
+                        {{? it[i].PFDigitalStudio.businessPicture}}
+                        <img src="{{=it[i].PFDigitalStudio.businessPicture}}" data-echo="{{=it[i].PFDigitalStudio.businessPicture}}" class="img-style">
+                        {{?}}
+                        <div class="aui-grid-label aui-font-size-12">数字演播室:{{=it[i].PFDigitalStudio.qty||0}}</div>
+                    </div>
+                    {{?}}
+                    {{? it[i].PFEducationWhiteboard}}
+                    <div class="aui-col-xs-4">
+                        {{? it[i].PFEducationWhiteboard.businessPicture}}
+                        <img src="{{=it[i].PFEducationWhiteboard.businessPicture}}" data-echo="{{=it[i].PFEducationWhiteboard.businessPicture}}" class="img-style">
+                        {{?}}
+                        <div class="aui-grid-label aui-font-size-12">教育电子白板:{{=it[i].PFEducationWhiteboard.qty||0}}</div>
+                    </div>
+                    {{?}}
+                    {{? it[i].PFIASolution}}
+                    <div class="aui-col-xs-4">
+                        {{? it[i].PFIASolution.businessPicture}}
+                        <img src="{{=it[i].PFIASolution.businessPicture}}" data-echo="{{=it[i].PFIASolution.businessPicture}}" class="img-style">
+                        {{?}}
+                        <div class="aui-grid-label aui-font-size-12">IA解决方案:{{=it[i].PFIASolution.qty||0}}</div>
+                    </div>
+                    {{?}}
+                    {{? it[i].PFIntelSSD}}
+                    <div class="aui-col-xs-4">
+                        {{? it[i].PFIntelSSD.businessPicture}}
+                        <img src="{{=it[i].PFIntelSSD.businessPicture}}" data-echo="{{=it[i].PFIntelSSD.businessPicture}}" class="img-style">
+                        {{?}}
+                        <div class="aui-grid-label aui-font-size-12">英特尔固态硬盘:{{=it[i].PFIntelSSD.qty||0}}</div>
+                    </div>
+                    {{?}}
+                </div>
+            </div>
+        </div>
+    {{}}}
+</script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+<script type="text/javascript">
+    var toast = new auiToast();
+    var tab = new auiTab({
+        element:document.getElementById("tab"),
+        index:1,
+        repeatClick:false
+    },function(ret){
+        if(ret.index == 1){
+            document.getElementById('data-list-tpl-0').classList.remove('aui-hide');
+            document.getElementById('data-list-tpl-1').classList.add('aui-hide');
+            document.getElementById('data-list-tpl-2').classList.add('aui-hide');
+        }else if(ret.index == 2){
+            document.getElementById('data-list-tpl-0').classList.add('aui-hide');
+            document.getElementById('data-list-tpl-1').classList.remove('aui-hide');
+            document.getElementById('data-list-tpl-2').classList.add('aui-hide');
+        }else{
+            document.getElementById('data-list-tpl-0').classList.add('aui-hide');
+            document.getElementById('data-list-tpl-1').classList.add('aui-hide');
+            document.getElementById('data-list-tpl-2').classList.remove('aui-hide');
+        }
+    });
+    var toast = new auiToast();
+    var pageNo = 0; //根据文档要求pageNo为0，对应文档中的skip参数
+    var loadStatus = true; //判断加载的状态
+    var param = {}; // 定义传输数据对象
+    // localStorage.setItem('token', '2JFkLwPi5HusOjsk0gjPdSiHe5vGbR2WW1wEgvADocLRVqtMBwgb14vPnlCqCT0N');
+    var token = "?access_token="+localStorage.getItem('token');
+//  var token = "?access_token=2JFkLwPi5HusOjsk0gjPdSiHe5vGbR2WW1wEgvADocLRVqtMBwgb14vPnlCqCT0N";
+    if(!localStorage.getItem('token')){
+    	window.location.href = BASE_URL+'/html/register/bvar_register.html';
+    }
+    $(function(){
+        toast.loading({
+            title:"加载中",
+            duration:2000
+        },function(ret){
+            // 加个延时让loading效果显示会
+            setTimeout(function(){
+                getData(param); // 获取数据
+            }, 500)
+
+            setTimeout(function() {
+                toast.hide();
+            }, 3000)
+        });
+    })
+    // 判断滚动到底部后加载数据
+    $(window).scroll(function(){
+    　　var scrollTop = $(this).scrollTop();
+    　　var scrollHeight = $(document).height();
+    　　var windowHeight = $(this).height();
+    　　if(scrollTop + windowHeight == scrollHeight && loadStatus){//当滑动到底部并且loadStatus为true时加载
+            getData(param);
+    　　}
+    });
+    // 获取数据
+    function getData(param){
+        // 当正在加载数据时，将loadStatus设置为false，防止滑动到底部重复加载
+        loadStatus = false;
+        var skip = pageNo * 15; //定义下标
+        param.skip = skip; //下标赋值
+        param.limit = 15; //单页数量赋值
+//      alert('提交的数据：'+JSON.stringify(param));
+        $.ajax({
+            url:INTEL_API_URL_B+"/jyh_dimbusinessreports/getBusinessRecordList" + token,
+            type:'POST',
+            data:param,
+            success:function(ret){
+//              alert('返回的数据：'+JSON.stringify(ret));
+                toast.hide();
+                // 有数据返回时
+                if(ret && ret.data && ret.data.length){
+                	toast.hide();
+                    var tempFn = doT.template($("#list-tpl").html());
+                    $("#list").append(tempFn(ret.data));
+                    echo.init({
+                        offset: 100,
+                        throttle: 250
+                    })
+                    // 因为默认就显示了loading效果，也就是当pageNo分页等于0的时候显示，那么当pageNo等于0的时候将loading隐藏
+//                  if(pageNo == 0){
+//                      toast.hide();
+//                  }
+                    // 成功写入数据后pageNo递增
+                    pageNo++;
+                    // 将loadStatus设置为true，可以继续加载数据喽
+                    loadStatus = true;
+                    $('.contact').each(function() {
+                        if(localStorage.getItem('user_contact')) {
+                            $(this).text(localStorage.getItem('user_contact'));
+                        }
+                    })
+                }else{
+                	toast.hide();
+                    // 当没有数据返回并且pageNo等于0时，说明没有数据（当没有数据返回并且pageNo大于0时，说明没有更多了）
+                    if(pageNo == 0){
+                        // 暂无数据
+                        $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">暂无数据</p>');
+                    }else{
+                        $("#list").append('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">没有更多了</p>');
+                    }
+                    // 既然没有数据也没有更多了，就将loadStatus设置为false，不允许加载了
+                    loadStatus = false;
+                }
+            },
+            error:function(err){
+//          	alert('错误'+JSON.stringify(err));
+                // 错误处理
+                toast.hide();
+                loadStatus = false;
+                $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">出错啦</p>');
+            }
+        })
+    }
+    // 执行加
+    function doAdd(type) {
+        var num = parseInt($('[data-name="' + type +'"]').text());
+        num++;
+        $('[data-name="' + type +'"]').text(num);
+    }
+    // 执行减
+    function doReduce(type) {
+        var num = parseInt($('[data-name="' + type +'"]').text());
+        if(num <= 0)return;
+        num--;
+        $('[data-name="' + type +'"]').text(num);
+    }
+    // 销量查看
+    function viewSales() {
+        zhuge.track("微信_bvar_我要得奖励销量查看");
+        window.location.href = BASE_URL + '/html/bvar/wydjl_xsjl.html';
+    }
+    // 提交承诺销量
+    function doSubmitSales() {
+        var formData = {}; // 定义提交对象
+        $('[data-name]').each(function() {
+            formData['' + $(this).attr("data-name") + ''] = parseInt($(this).text());
+        })
+        console.log(JSON.stringify(formData));
+        toast.loading({
+            title: '提交中...',
+            duration: 2000
+        }, function(ret) {
+        })
+        $.ajax({
+            url: INTEL_API_URL_B+"/jyh_promises/getPromise"+ token,
+            type: 'POST',
+            data: formData,
+            success: function(ret) {
+                toast.hide();
+                toast.success({
+                    title: '提交成功!',
+                    duration: 1000
+                })
+                setTimeout(function() {
+                    // window.location.href = BASE_URL + '/html/bvar/wydjl2.html';
+                    window.location.reload();
+                }, 500)
+                console.log(JSON.stringify(ret));
+            },
+            error: function(err) {
+                toast.hide();
+                console.log(JSON.stringify(err));
+            }
+        })
+    }
+    // 获取时间格式 (精确到天)
+    function formatTime(timeStr){
+        var str = timeStr.substr(0, 10);
+        str = str.replace(/-/g,"/");
+        return str;
+    }
+    // 新增报备
+    function addReport() {
+        zhuge.track("微信_bvar_我要得奖励新增报备");
+        window.location.href = BASE_URL + '/html/bvar/wydjl_xzbb.html';
+    }
+
+</script>
+</html>

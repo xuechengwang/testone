@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">样机借测</title>
+    <style>
+        .height-tag{
+            height: 2rem;
+            line-height: 2rem;
+            border-bottom: 1px solid #dddddd;
+        }
+        .span-tag-one{
+            border-radius: 50%;
+            border:1px solid #999999;
+            padding: 3px 3px;
+        }
+        .span-tag-two{
+            border-radius: 1rem;
+            border:1px solid #999999;
+            width: 1.2rem;
+            height: 1.2rem;
+            padding:3px 1.4rem;
+            color: #999999;
+        }
+        .span-tag-three{
+            border-radius: 50%;
+            border:1px solid #009ce9;
+            padding: 3px 3px;
+            color: #009ce9;
+        }
+        .position-tag{
+            position: absolute;
+            top:0;
+            left: 5.5rem;
+            width: 34%;
+            /*width: 6.5rem;*/
+        }
+        .position-r{
+            position: relative;
+        }
+        .submit-tag-b{
+            padding: 0.5rem 0;
+            color: #ffffff;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+        .aui-col-xs-5{
+            height: 2rem;
+            line-height: 2rem;
+        }
+        .aui-col-xs-7{
+            height: 2rem;
+            line-height: 2rem;
+        }
+        .input-style{
+            position: relative;
+            top: 0.55rem;
+        }
+        .border-b-tag{
+            border-bottom: 1px solid #dddddd;
+        }
+        .width-center-tag{
+            margin: 0 auto;
+            width: 6.5rem;
+            height: 5rem;
+        }
+        .width-center-tag img{
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .style-tag{
+            padding-top: 0.75rem;
+            background-color:#f5f5f5 !important;
+        }
+    </style>
+
+</head>
+<body>
+
+    <section id="list">
+        
+    </section>
+
+<!-- 模板 -->
+
+<script type="text/x-dot-template" id="list-tpl">
+</section>
+	<section>
+        <div class="aui-card-list">
+            <input type="hidden" name="protoid" value="{{=it._id}}">
+
+            {{?it.pictures && it.pictures.length}}
+
+            <div class="aui-card-list-content">
+                <div class="style-tag">
+                    <div class="width-center-tag"><img src="{{=it.pictures[0].url}}" /></div>
+                </div>
+            </div>
+
+            {{?}}
+        </div>
+        <div class="bg-ffffff aui-padded-l-15 border-b-tag">
+            {{for(var i in it.models){}}
+            <div class="aui-row">
+                {{? i == 0}}
+                <div class="aui-font-size-14 text-666666 aui-col-xs-3" style="line-height:1.5rem;">可选型号:</div>
+                {{??}}
+                <div class="aui-font-size-14 text-666666 aui-col-xs-3">&nbsp;</div>
+                {{?}}
+                <div class="aui-col-xs-7 aui-font-size-14">
+                    <input type="radio" name="modelid" value="{{=it.models[i].id||''}}" class="aui-radio input-style">
+                    <span class="aui-font-size-14 text-666666">{{=it.models[i].machinemodel||''}}</span>
+                </div>
+            </div>
+            {{}}}
+        </div>
+
+        <section id="select-content">
+            <div class="aui-border-bottom  bg-ffffff aui-padded-l-15 height-tag position-r">
+                <span class="aui-font-size-14 text-666666">可借数量:</span>
+                <div class="position-tag">
+                    <span class="text-666666 aui-font-size-14"><span id="outproto">0</span>/<span id="stockqty">0</span></span>
+                </div>
+            </div>
+        </section>
+
+    </section>
+    <div class="aui-border-bottom bg-ffffff aui-padded-l-15 height-tag position-r">
+        <span class="aui-font-size-14 text-666666">申请数量(台):</span>
+        <div class="position-tag">
+                <span class="aui-iconfont aui-icon-minus span-tag-one" onclick="applynumberChange('reduce')"></span>
+                <span data-name="applynumber" id="applynumber" class="aui-text-center span-tag-two">1</span>
+                <span class="aui-iconfont aui-icon-plus span-tag-three" onclick="applynumberChange('add')"></span>
+        </div>
+    </div>
+    <div class="aui-border-bottom bg-ffffff aui-padded-l-15 height-tag position-r">
+        <span class="aui-font-size-14 text-666666">申请时间:</span>
+        <div class="position-tag">
+                <span id="applydateSpan"></span>
+                <input type="hidden" id="applydate" name="applydate">
+                <span class="aui-iconfont aui-icon-calendar  aui-font-size-14"></span>
+        </div>
+    </div>
+    <div class="aui-border-bottom bg-ffffff aui-padded-l-15 height-tag position-r">
+        <span class="aui-font-size-14 text-666666">申请时长(周):</span>
+        <div class="position-tag">
+                <span class="aui-iconfont aui-icon-minus span-tag-one" onclick="applyweeksChange('reduce')"></span>
+                <span data-name="applyweeks" id="applyweeks" class="aui-text-center span-tag-two">1</span>
+                <span class="aui-iconfont aui-icon-plus span-tag-three" onclick="applyweeksChange('add')"></span>
+        </div>
+    </div>
+    <div class="aui-border-bottom bg-ffffff height-tag position-r">
+        <span class="aui-font-size-14 aui-padded-l-15 text-666666">联系电话:</span>
+        <div class="position-tag">
+            <input name="mobile" id="mobile" required type="number" placeholder="请输入联系电话" class="text-999999 aui-font-size-14" style="padding-right: 1.2rem;">
+                <!-- <span class="aui-iconfont aui-icon-edit  aui-font-size-14"></span> -->
+        </div>
+    </div>
+    <div class="bg-ffffff aui-padded-l-15 border-b-tag">
+        {{for(var i in it.applyreason){}}
+        <div class="aui-row">
+            {{? i == 0}}
+            <div class="aui-font-size-14 text-666666 aui-col-xs-3" style="line-height:1.5rem;">申请理由:</div>
+            {{??}}
+            <div class="aui-font-size-14 text-666666 aui-col-xs-3">&nbsp;</div>
+            {{?}}
+            <div class="aui-col-xs-7 aui-font-size-14">
+                <input type="radio" name="applyreasionid" value="{{=it.applyreason[i].id||''}}" class="aui-radio input-style">
+                <span class="aui-font-size-14 text-666666">{{=it.applyreason[i].name||''}}</span>
+            </div>
+        </div>
+        {{}}}
+    </div>
+        <!-- 底部定位，设置一个空的高度div撑起底部定位的高度，否则遮住看不见。 -->
+        <div style="height: 2.5rem;width: 100%;"></div>
+
+        <!-- 底部提交按钮 -->
+        <div class="submit-tag-b bg-009ce9-blue aui-text-center" onclick="doConfirm()">
+             确定
+        </div>
+
+</body>
+
+<script type="text/x-dot-template" id="select-content">
+    
+    <div class="aui-border-bottom  bg-ffffff aui-padded-l-15 height-tag position-r">
+        <span class="aui-font-size-14 text-666666">可借数量:</span>
+        <div class="position-tag">
+            <span class="text-666666 aui-font-size-14">{{=it.outproto||''}}/{{=it.stockqty||''}}</span>
+        </div>
+    </div>
+
+</script>
+
+<script type="text/javascript" src="../../script/common.js"></script>
+
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+
+<script type="text/javascript">
+
+    var modelsDatas = []; // 定义可借数量与可选型号绑定数组
+
+    var toast = new auiToast();
+
+    var searchStr = window.location.search.substr(1); //获得当前页面搜索数据
+
+    var searchArr = searchStr.split('='); //根据等号切割成数组
+
+    var searchId = searchArr[1]; //获取等号后面元素
+
+    var ableproto = 0; // 最大可选数量
+
+    var applytime = 0; // 最大可选周期
+
+ // var token = '?access_token=Gbzf7Jno9sEE0c4SHN4NAQj4F9XdhsN8gj7Mv2ZsoWFZsYf7yfzwido9zdX8DkBt'; //定义用户 token
+	var token = "?access_token="+localStorage.getItem('token');
+
+    $(function(){
+
+        toast.loading({
+
+            title:"加载中",
+
+            duration:2000
+
+        },function(ret){
+
+            // 加个延时让loading效果显示会
+
+            setTimeout(function(){
+
+                getData();
+
+            }, 500)
+
+        });
+
+    })
+    
+    //获取数据
+    function getData(){
+    	//如果未登录直接跳登录页
+		if(!localStorage.getItem('token')){
+    		window.location.href = BASE_URL+'/html/register/register.html';
+    		return;
+    	}
+        // 调用服务器请求
+        $.ajax({
+            url: INTEL_API_URL+"/jyh_dimprotos/startApplyProto" + token,
+            type: 'POST',
+            data: {
+                id: searchId
+            },
+            success: function(ret){
+                toast.hide(); //隐藏 loading
+                if(ret){
+                    console.log(JSON.stringify(ret));
+                    var tempFn = doT.template($('#list-tpl').html());
+                    $('#list').append(tempFn(ret.protoinfo));
+                    modelsDatas = ret.protoinfo.models; //将获取到的 models 数组赋给全局变量
+                    getModelsSelect(); // 根据选择类型显示不同可借数量
+                    getNowTime(); //获取当前时间
+                } else {
+                    $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">出错啦</p>');
+                }
+            },
+            error: function(err){
+                toast.hide(); //隐藏 loading
+                console.log(JSON.stringify(err));
+                $("#list").html('<p class="aui-text-center aui-padded-t-15 aui-padded-b-15">出错啦</p>');
+            }
+        })
+    }
+
+    // 显示可借数量
+    function getModelsSelect(){ 
+        var modelsRadios = document.querySelectorAll('input[name="modelid"]');
+        console.log(JSON.stringify(modelsDatas))
+        for(var i = 0; i<modelsRadios.length; i++){
+            modelsRadios[i].addEventListener('change', function(){
+                console.log(this.value);
+                for(var j = 0; j<modelsDatas.length; j++){
+                    if(this.value == modelsDatas[j].id){
+                        ableproto = modelsDatas[j].stockqty - modelsDatas[j].outproto; // 最大可选数量
+                        applytime = modelsDatas[j].applytime; // 最大可选周期
+                        $('#stockqty').html(modelsDatas[j].stockqty);
+                        $('#outproto').html(ableproto);
+                    }
+                }
+            })
+        }
+    }
+
+    // 增减数量
+    function applynumberChange(type){
+        var applynumber = parseInt($('#applynumber').text());
+        type == 'add' ? applynumber++ : applynumber--;
+        if(applynumber < 1)return;
+        if(applynumber > parseInt(ableproto))return;
+        $('#applynumber').text(applynumber);
+    }
+
+    // 增减周期
+    function applyweeksChange(type){
+        var applyweeks = parseInt($('#applyweeks').text());
+        type == 'add' ? applyweeks++ : applyweeks--;
+        if(applyweeks < 1)return;
+        if(applyweeks > parseInt(applytime))return;
+        $('#applyweeks').text(applyweeks);
+    }
+
+    // 点击确定
+    function doConfirm(){
+        var formData = {}; // 定义提交对象
+        var mobile = document.getElementById('mobile').value;
+        if(!mobile){
+            toast.custom({
+                title:"请输入手机号!",
+                html:'<i class="aui-iconfont aui-icon-info"></i>'
+            });
+            return;
+        }
+        $('input[name]').each(function(){
+            formData['' + $(this).attr("name") + ''] = $(this).val(); //将所有带name 的 input 框赋给表单提交对象
+        })
+        $('[data-name]').each(function(){
+            formData['' + $(this).attr("data-name") + ''] = $(this).text(); //将所有带name 的 input 框赋给表单提交对象
+        })
+        var modelidCheckde = document.querySelector('[name="modelid"]:checked');
+        if(!modelidCheckde){
+            toast.custom({
+                title:"请选择型号!",
+                html:'<i class="aui-iconfont aui-icon-info"></i>'
+            });
+            return;
+        }
+        formData.modelid = modelidCheckde.value; // 获取选中类型
+        var applyreasionidCheckde = document.querySelector('[name="applyreasionid"]:checked');
+        if(!applyreasionidCheckde){
+            toast.custom({
+                title:"请选择理由!",
+                html:'<i class="aui-iconfont aui-icon-info"></i>'
+            });
+            return;
+        }
+        formData.applyreasionid = applyreasionidCheckde.value; // 获取选中理由
+        // console.table(JSON.stringify(formData));
+        toast.loading({
+            title: '提交中'
+        }, function(ret){
+            $.ajax({
+                url: INTEL_API_URL+"/jyh_dimprotoapplies/protoApply" + token,
+                type: 'POST',
+                data: formData,
+                success: function(ret){
+                    toast.hide();
+                    if(ret.code == 1){
+                        toast.success({
+
+                            title: ret.message
+
+                        });
+                        setTimeout(function(){
+                            window.location.href = BASE_URL + '/html/csp/wyjyj_jcjl.html';
+                        }, 500)
+                    } else {
+                        toast.custom({
+                            title:ret.message,
+                            html:'<i class="aui-iconfont aui-icon-info"></i>'
+                        });
+                        return;
+                    }
+                },
+                error: function(err){
+                    toast.hide();
+                    toast.custom({
+                        title:'提交失败',
+                        html:'<i class="aui-iconfont aui-icon-info"></i>'
+                    });
+                }
+            })
+        })
+    }
+
+    // 获取当前时间
+    function getNowTime(){
+        var now = new Date();
+        var applydate = now.getFullYear() + '-' + (now.getMonth()+1) + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + '.' + now.getMilliseconds();
+        console.log(applydate);
+        $('#applydate').val(applydate);
+        $('#applydateSpan').text(applydate.substr(0,10));
+    }
+
+</script>
+</html>

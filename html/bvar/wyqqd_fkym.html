@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title class="aui-text-center">我要去抢单</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+
+    <style>
+        body{
+            background-color: #ffffff !important;
+        }
+        .submit-tag-b{
+            padding: 0.5rem 0;
+            color: #ffffff;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+        }
+        .width-style{
+            background-color: #ffffff;
+            padding: 0.75rem 0.75rem 0 0.75rem;
+        }
+        .width-style ul li{
+            height: 2.2rem;
+            width: 100%;
+
+        }
+       ::-webkit-input-placeholder { /* WebKit browsers */
+            color:#666666;
+            font-size: 0.65rem;
+            text-indent: 0.75rem;
+        }
+        .width-style ul li input[type="text"],
+        .width-style ul li input[type="number"]{
+            width: 100%;
+            min-height:1.6rem;
+            border: 1px solid #dddddd;
+            display:inline-block;
+            border-radius: 0.6rem;
+            text-indent: 0.6rem;
+        }
+        .table-one{
+            width: 100%;
+            padding-right: 0.5rem;
+            font-size:0.7rem;
+            color: #666666;
+        }
+        .table-one tr td:first-child{
+            text-align: right;
+            /*width: 30%;*/
+            height: 1.3rem;
+            line-height: 1.3rem;
+        }
+        .table-one tr td{
+            width: 5%;
+            text-align: center;
+            height: 1.3rem ;
+            line-height: 1.3rem;
+        }
+        .table-one input[type="number"]{
+            border: 1px solid #dddddd;
+            min-height: 1.4rem;
+            width: 1.4rem;
+            /*border-radius: 0.7rem;*/
+            display:inline-block;
+            padding-left: 0.35rem;
+        }
+        .aui-left-p{
+            text-align: left !important;
+            padding-left: 0.5rem;
+        }
+        .aui-radio{
+            width: 1rem;
+            height: 1rem;
+            margin-top: 3px;
+        }
+        .aui-mask {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            z-index: 101;
+            visibility: hidden;
+            -webkit-transition-duration: 300ms;
+                    transition-duration: 300ms;
+        }
+        .aui-mask.aui-mask-in {
+            visibility: visible;
+            opacity: 1;
+        }
+        .mark{
+            position:absolute;
+            z-index: 200;
+        }
+        .mask-style-tag{
+            width: 72%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            margin-top: 4rem;
+            border-radius: 0.75rem;
+        }
+        .mask-style-tag .aui-radio{
+
+            width: 0.75rem;
+            height: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        .aui-radio{
+            margin-top: 0.15rem;
+        }
+        .span-btn{
+            border:1px solid #ddd;
+            padding:0.25rem 1rem;
+            border-radius:0.75rem;
+            background-color: #ddd;
+            color: #fff;
+        }
+        img.tsj,img.bjb,img.fwq,img.pb{
+	     	width:0.8rem;height:auto;margin-bottom:-0.1rem;margin-right:0.15rem;
+	     }
+	     img.bjb,img.fwq{
+	     	width:1rem;
+	     }
+	     img.pb{
+	     	margin-bottom:-0.2rem;
+	     }
+    </style>
+</head>
+<body>
+
+     <!-- 我要去抢单  反馈页面-->
+
+    <!-- 遮罩层按钮 函数方法写在下面 调试这个页面的时候注释掉这部分-->
+    <div class="aui-mask aui-mask-in aui-hide">
+        <section class="mark ">
+            <div class="mask-style-tag">
+                <div class="aui-padded-l-15 aui-padded-r-15 aui-font-size-14 aui-padded-t-15 aui-padded-b-15 text-666666">为更好支持贵公司赢得商机，将有英特尔工作人员与您电话联系，赢单后请提供贵公司赢单销售证明，以获取英特尔该项目相应奖励</div>
+                <div class="aui-padded-l-15 aui-padded-r-15" style="margin-top:-0.3rem;"><input type="radio"  class="aui-radio" onclick="clause()"><span class="aui-font-size-12 aui-margin-l-5">我确认并同意上述条款</span></div>
+                <div class="aui-row aui-padded-l-15 aui-padded-r-15 aui-padded-t-15 aui-padded-b-15">
+                    <div class="aui-col-xs-6 aui-text-center" id="submit" onclick="">
+                        <span class="span-btn">确定</span>
+                    </div>
+                    <div class="aui-col-xs-6 aui-text-center" onclick="hideDialog()">
+                        <span class="span-btn">返回</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 头部 -->
+    <div class="aui-padded-l-15 aui-padded-t-10 aui-padded-b-10 bg-ffffff aui-border-b font-size-13">
+        客户名称：<span class="text-666666" id="demandside"></span>
+    </div>
+    <div class="aui-padded-l-15 aui-padded-t-10 aui-padded-b-10 bg-ffffff  font-size-13">
+        城市：<span class="text-666666" id="city"></span>
+    </div>
+    <div class="aui-padded-l-15 aui-padded-t-10 aui-padded-b-10 aui-font-size-14 aui-text-center" style="background-color: #f5f5f5">
+    请填写反馈信息
+    </div>
+
+	<!-- 滑动页 -->
+	<div class="aui-tab" id="tab">
+	    <div class="aui-tab-item aui-active">信息有效跟进</div>
+	    <div class="aui-tab-item">信息有效放弃</div>
+        <div class="aui-tab-item">信息无效</div>
+	</div>
+<section id="list"></section>
+    <!-- 可抢商机 -->
+    <script type="text/x-dot-template" id="list-tpl">
+    	<section id="data-list-tpl-0">
+	        <div class="width-style">
+	          <ul>
+	          	<!--要提交给服务器的参数-->
+	            <li><input type="text" name="contact" hint="请输入联系人" placeholder="请输入联系人" id="contact" required></li>
+	            <li><input type="number" name="mobile" pattern="[0-9]*" hint="请输入手机号" placeholder="请输入手机号" id="mobile" required></li>
+	            <li><input type="text" name="email" placeholder="请输入邮箱" hint="请输入邮箱" id="email" required></li>
+	            <li><input type="text" name="purchasetime"  id="purchasetime"  readonly required></li>
+	          </ul>
+	        </div>
+	        <div class="bg-ffffff">
+	            <table class="table-one">
+	                <tr >
+	                    <td>类别</td>
+	                    <td  style="width:15%;"><img src="../../image/bvar/tsj.png" class="tsj" /><span id="computer"></span></td>
+	                    <td  style="width:15%;"><img src="../../image/bvar/bjb.png" class="bjb" /><span id="laplop"></span></td>
+	                    <td  style="width:15%;"><img src="../../image/bvar/fwq.png" class="fwq" /><span id="server"></span></td>
+	                    <td  style="width:15%;"><img src="../../image/bvar/pb.png" class="pb" /><span id="tablet"></span></td>
+	                	
+	                </tr>
+	                <tr>
+	                	<!--要提交给服务器的参数-->
+	                    <td>实际采购数量</td>
+	                    <td><input type="number" name="computer" data-name="computer" class="input-roud" pattern="[0-9]*" ></td>
+	                    <td><input type="number" name="laplop"  data-name="laplop" class="input-roud" pattern="[0-9]*" ></td>
+	                    <td><input type="number" name="server"  data-name="server" class="input-roud" pattern="[0-9]*" ></td>
+	                    <td><input type="number" name="tablet" data-name="tablet" class="input-roud" pattern="[0-9]*" ></td>
+	                </tr>
+	                <!--<tr >
+	                	<td width="30%" class="aui-padded-t-5" >具体反馈</td>
+	                </tr>-->
+	                <!--要提交给服务器的参数-->
+	                {{for(var i in it){}}
+	                {{? it[i].id=='0'}}
+	                <tr>
+			            {{? i==0}}
+			            <td style="width:30%;">具体反馈</td>
+			            {{??}}
+			            <td></td>
+			            {{?}}
+			            <td colspan="3" style="text-align: left;padding-left: 0.5rem;">
+			            	<input type="radio" name="reasoninfo" id="other" data-id="{{=it[i].id}}" class="aui-radio">{{=it[i].name||''}}
+			            	<textarea name="" maxlength="200" class="other"  style="height:1rem;border:1px solid #ddd;display:none;"></textarea>
+			            </td>
+			        </tr>
+			        {{??}}
+	                <tr >
+			            {{? i==0}}
+			            <td style="width:30%;">具体反馈</td>
+			            {{??}}
+			            <td></td>
+			            {{?}}
+			            <td colspan="3" class="aui-padded-t-5 aui-left-p">
+			            	<input type="radio" name="reasoninfo" data-id="{{=it[i].id}}" class="aui-radio input-other">{{=it[i].name||''}}
+			            </td>
+			        </tr>
+			        {{?}}
+			        {{}}}
+	            </table>
+	        </div>
+	    </section>
+    </script>
+	
+    <!-- 待反馈商机 -->
+    <section id="data-list-tpl-1" class="aui-hide" ></section>
+    <!-- 已完成商机 -->
+    <section id="data-list-tpl-2" class="aui-hide"></section>
+    <!---->
+	<script type="text/x-dot-template" id="list-tpl-1">
+		<div class="bg-ffffff">
+            <table class="table-one">
+                <tr style="height:0.5rem;">
+                   	<td style="height:0.5rem;"></td>
+                   	<td style="height:0.5rem;"></td>
+                   	<td style="height:0.5rem;"></td>
+                </tr>
+		        {{for(var i in it){}}
+                {{? it[i].id=='0'}}
+                <tr>
+                	{{? i==0}}
+		            <td  class="">具体反馈</td>
+		            {{??}}
+		            <td></td>
+		            {{?}}
+		            <td colspan="3" style="text-align: left;padding-left: 0.5rem;">
+		            	<input type="radio" name="reasoninfo" onclick="thisOther()" data-id="{{=it[i].id}}" class="aui-radio">{{=it[i].name||''}}
+		            	<textarea name="" maxlength="200" class="other"  style="height:1rem;border:1px solid #ddd;display:none;"></textarea>
+		            </td>
+		        </tr>
+		        {{??}}
+                <tr >
+		            {{? i==0}}
+		            <td style="width:30%;">具体反馈</td>
+		            {{??}}
+		            <td></td>
+		            {{?}}
+		            <td colspan="3" class="aui-padded-t-5 aui-left-p">
+		            	<input type="radio" name="reasoninfo" onclick="other()" data-id="{{=it[i].id}}" class="aui-radio input-other">{{=it[i].name||''}}
+		            </td>
+		        </tr>
+		        {{?}}
+		        {{}}}
+            </table>
+        </div>
+	</script>
+
+    <!-- 底部定位，设置一个空的高度div撑起底部定位的高度，否则遮住看不见。 -->
+        <div style="height: 2.5rem;width: 100%;"></div>
+
+        <!-- 底部提交按钮 -->
+        <div class="submit-tag-b bg-009ce9-blue aui-text-center" onclick="alertDialog()">
+             反馈
+        </div>
+</body>
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript" src="../../script/aui-dialog.js"></script>
+<script type="text/javascript">
+	var index=1;//默认1
+	var tab = new auiTab({
+        element:document.getElementById("tab"),
+        index:1,
+        repeatClick:false
+    },function(ret){
+        if(ret.index == 1){
+//			document.getElementById('data-list-tpl-0').classList.remove('aui-hide');
+            document.getElementById('data-list-tpl-1').classList.add('aui-hide');
+            document.getElementById('data-list-tpl-2').classList.add('aui-hide');
+        }else if(ret.index == 2){
+//      	document.getElementById('data-list-tpl-0').classList.add('aui-hide');
+            document.getElementById('data-list-tpl-1').classList.remove('aui-hide');
+            document.getElementById('data-list-tpl-2').classList.add('aui-hide');
+        }else{
+//          document.getElementById('data-list-tpl-0').classList.add('aui-hide');
+            document.getElementById('data-list-tpl-1').classList.add('aui-hide');
+            document.getElementById('data-list-tpl-2').classList.remove('aui-hide');
+        }
+        index=ret.index;
+        getData();
+    });
+
+    //点击反馈，弹出确定和取消按钮
+    function alertDialog(){
+        document.querySelector('.aui-mask').classList.remove('aui-hide');
+        // document.querySelector('.aui-mask').addEventListener('touchstart',function(event){
+        //     event.preventDefault();//阻止事件冒泡 和遮罩层禁止滑动
+        // },false)
+    }
+    //取消
+    function hideDialog(){
+        document.querySelector('.aui-mask').classList.add('aui-hide');
+    }
+
+	var toast = new auiToast();
+	var dialog = new auiDialog();
+	var searchStr = window.location.search.substr(1); //获得当前页面搜索数据
+	//1.htm?title&id
+    var searchArr = searchStr.split('='); //根据等号将字符串切割成数组
+    var feedbackDatas=JSON.parse(decodeURI(searchArr[1]));//传过来的数组
+    console.log(JSON.stringify(feedbackDatas));
+
+//  var token="?access_token=fhnnZFNDZcwdQ9GYquVb9I4tyjVIEPecl3TyrEPD8GjGPoIVqGH0QTnobBvtuEZH";
+		var token = "?access_token="+localStorage.getItem('token');
+    //如果未登录直接跳登录页
+	if(!localStorage.getItem('token')){
+		window.location.href = BASE_URL+'/html/register/bvar_register.html';
+	}
+	$(function(){
+        toast.loading({
+            title:"加载中",
+            duration:2000
+        },function(ret){
+            // 加个延时让loading效果显示会
+            setTimeout(function(){
+                getData();
+            }, 500)
+        });
+    })
+	function getData(){
+		console.log(index);
+		$('#city').html("");
+		$('#demandside').html("");
+		$('#city').append(feedbackDatas.city);//从上个页面获取的数据,传过来是编码，将编码转换成中文
+		$('#demandside').append(feedbackDatas.demandside);//从上个页面获取的数据,传过来是编码，将编码转换成中文
+		var url;
+		if(index==1){//有效的反馈原因
+			url='/jyh_grabvalidreasons/getGrabValidReasonList';
+		}else if(index==2){//有效放弃原因
+			url='/jyh_grabreasons/getGrabReasonList';
+		}else{//无效放弃
+			url='/jyh_grabinvalidreasons/getGrabInvalidReasonList';
+		}
+
+		//反馈原因
+		$.ajax({
+			url:INTEL_API_URL_B+url+token,
+			type:'post',
+			data:{},
+			success:function(ret){
+				toast.hide();
+				console.log('反馈原因：'+JSON.stringify(ret));
+				if(index==1){
+					var tempFn = doT.template($("#list-tpl").html());
+					$("#list").html("");
+					$("#list").append(tempFn(ret.data));
+
+			        //监听选择其他弹出文本框
+			        $("#other").change(function(e) {
+			    		$('.other').css('display','block');
+					});
+					$(".input-other").change(function(e) {
+			    		$('.other').css('display','none');
+					});
+					//赋值当前时间
+					var now = new Date();
+			        var applydate = now.getFullYear() + '-' + (now.getMonth()+1) + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds() + '.' + now.getMilliseconds();
+			        console.log(applydate);//打印赋值后的当前时间
+			        $('#purchasetime').val(applydate);
+			        //如果从上个页面传来有数据
+//			        if(feedbackDatas){
+//			        	//将类别数据放入页面
+//						$('#computer').text(feedbackDatas.computer);
+//						$('#laplop').text(feedbackDatas.laplop);
+//						$('#server').text(feedbackDatas.server);
+//						$('#tablet').text(feedbackDatas.tablet);
+//					}
+				}else{//如果是信息有效放弃，将数据放进页面
+					var tempFn = doT.template($("#list-tpl-1").html());
+					$("#list").html("");
+					$("#list").append(tempFn(ret.data));
+				}
+
+			},
+			error:function(err){
+				toast.hide();
+				console.log(JSON.stringify(err));
+			}
+		})
+	}
+	//发布
+	function fnSubmit(){
+		if(index==1){//信息有效跟进
+			submit1();
+		}else{//两个放弃
+			submit2();
+		}
+	}
+	function submit2(){
+		var formDatas={};
+		//获取反馈原因
+		 var inputs = document.querySelectorAll('input[data-id]:checked');//单选只有一个数据
+		 if(inputs.length){
+		 	var reasonid=inputs[0].getAttribute('data-id');
+		 	if(reasonid=='0'){
+	 			var reasoninfo=$('.other').val();
+	 			if(!reasoninfo){
+					toast.fail({
+			            title:'请输入其他反馈理由' ,
+			            duration:2000
+			        },function(ret){
+		    		});
+	                return;
+	 			}
+	 			//将用户选择其他保存
+	 			formDatas.reasoninfo=reasoninfo;
+	 		}
+	 		//将选择项的id保存
+	 		formDatas.reasonid=reasonid;
+		 }else{
+			toast.fail({
+	            title:'请输入反馈原因' ,
+	            duration:2000
+	        },function(ret){
+    		});
+            return;
+		 }
+		 //将提交的数据赋值id保存
+		formDatas.id=feedbackDatas._id;
+	    console.log('提交的数据：'+JSON.stringify(formDatas));
+		toast.loading({
+            title:"正在提交",
+            duration:1000
+        },function(ret){
+        });
+        var fqUrl;
+        if(index==2){//有效放弃接口
+        	fqUrl='/jyh_grabrecords/giveupValidGrab';
+        }else{//无效
+        	fqUrl='/jyh_grabrecords/giveupInvalidGrab';
+        }
+		$.ajax({
+            url:INTEL_API_URL_B+fqUrl+token,
+            type:'post',
+            data:formDatas,
+            success:function(ret){
+            	toast.hide();
+                // 有数据返回时
+                if(ret.success==true){
+                	toast.success({
+	                    title:'提交成功'
+	                })
+                    //关闭当前页面
+                    setTimeout(function(){
+	                    	window.history.go(-2);
+//						window.location.href = BASE_URL+'/html/bvar/wyqqd.html';
+                    }, 2000);
+                }
+            },
+            error:function(err){
+            	toast.hide();
+            	console.log('err:'+JSON.stringify(err));
+                var message=err.responseJSON.error.message ;
+    			toast.fail({
+		            title:message,
+		            duration:2000
+		        },function(ret){
+	    		});
+	    		document.querySelector('.aui-mask').classList.add('aui-hide');
+            }
+        })
+	}
+	function submit1(){
+		var formItems=document.querySelectorAll('[required]');//4个数据
+		var formDatas={};
+		var mobilePartten = /^1[3-9]\d{9}$/;
+		var emailPattern = /[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/;
+		var mobile=$('#mobile').val();
+		var email=$('#email').val();
+		//遍历每个含有required的元素，验证其是否为空
+		for(var i=0;i<formItems.length;i++){
+           if(!formItems[i].value && formItems[i].required){
+            	var hint=formItems[i].getAttribute('hint');
+//             dialog.alert({
+//                  title:"提示消息",
+//                  msg:hint,
+//                  buttons:['好']
+//              },function(ret){
+//              })
+			toast.fail({
+	            title:hint ,
+	            duration:2000
+	        },function(ret){
+    		});
+               return;//必填的元素没有value值就不往下执行代码
+           }
+           if(!mobilePartten.test(mobile)){
+				toast.fail({
+		            title:'请输入正确的手机号' ,
+		            duration:2000
+		        },function(ret){
+	    		});
+	            return;
+           }
+           if(!emailPattern.test(email)){
+				toast.fail({
+		            title:'请输入正确的邮箱' ,
+		            duration:2000
+		        },function(ret){
+	    		});
+	            return;
+           }
+           //将联系人，手机号，邮箱，时间保存
+           formDatas[''+formItems[i].name+''] = formItems[i].value;
+		}
+		//将提交的数据赋值id保存
+		formDatas.id=feedbackDatas._id;
+		//将实际采购数量保存
+		var dataNames=document.querySelectorAll('[data-name]');
+		for(var i=0;i<dataNames.length;i++){
+			formDatas[''+dataNames[i].name+''] = dataNames[i].value;
+		}
+		//获取反馈原因
+		 var inputs = document.querySelectorAll('input[data-id]:checked');
+		 if(inputs.length){
+		 	//radio为checked只有一个，获取其属性值
+		 	var reasonid=inputs[0].getAttribute('data-id');
+		 	if(reasonid=='0'){
+	 			var reasoninfo=$('.other').val();
+	 			if(!reasoninfo){
+				toast.fail({
+		            title:'请输入其他反馈理由' ,
+		            duration:2000
+		        },function(ret){
+	    		});
+	                return;
+	 			}
+	 			formDatas.reasoninfo=reasoninfo;
+	 		}
+	 		formDatas.reasonid=reasonid;
+		 }else{
+			toast.fail({
+	            title:'请输入反馈原因' ,
+	            duration:2000
+	        },function(ret){
+    		});
+            return;
+		 }
+	    console.log('提交的数据：'+JSON.stringify(formDatas));
+		toast.loading({
+            title:"正在提交",
+            duration:1000
+        },function(ret){
+        });
+		$.ajax({
+            url:INTEL_API_URL_B+'/jyh_grabrecords/submitFeedbackInfo'+token,
+            type:'post',
+            data:formDatas,
+            success:function(ret){
+            	toast.hide();
+                // 有数据返回时
+                if(ret.success==true){
+                	toast.success({
+	                    title:'提交成功'
+	                })
+                    //关闭当前页面
+                    setTimeout(function(){
+//	                    	window.history.go(-1);
+						window.location.href = BASE_URL+'/html/bvar/wyqqd.html';
+                    }, 2000);
+                }
+            },
+            error:function(err){
+            	toast.hide();
+            	console.log('err:'+JSON.stringify(err));
+                var message=err.responseJSON.error.message ;
+    			toast.fail({
+		            title:message,
+		            duration:2000
+		        },function(ret){
+	    		});
+	    		document.querySelector('.aui-mask').classList.add('aui-hide');
+            }
+        })
+	}
+	//同意条款，将确定按钮赋值onclick
+	function clause(){
+		$('#submit').attr('onclick','fnSubmit()');
+		$('#submit span').css('color','#333');
+	}
+	function other(){
+		$('.other').css('display','none');
+	}
+	function thisOther(){
+		$('.other').css('display','block');
+	}
+</script>
+</html>

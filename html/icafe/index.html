@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui-slide.css" />
+    <title class="aui-text-center">渠道服务-iCafe&SMB</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <style>
+     body{
+     	background: #ffffff;
+     }
+     .banner img{
+        width: 100%;
+        display: block;
+     }
+     .classify img {
+        width: 100%;
+        display: block;
+    }
+    .classify-item-wrap img {
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+    }
+    .aui-row .aui-col-xs-4{
+        height: auto;
+    }
+
+    .aui-border-t:before{
+
+        width: 100%;
+
+        height: 1px;
+
+        background-color: #000;
+
+        display: block;
+
+        content: '';
+
+        position: absolute;
+
+        z-index: 2;
+
+        left: 0;
+
+        right: auto;
+
+        -webkit-transform-origin: 100% 30%;
+
+                transform-origin: 100% 30%;
+
+        pointer-events: none;
+
+    }
+    .aui-border-l:before, .aui-border-r:after {
+        width: 1px;
+        height: 100%;
+        background-color: #000;
+        display: block;
+        content: '';
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        bottom: auto;
+        -webkit-transform-origin: 50% 100%;
+        transform-origin: 50% 100%;
+        pointer-events: none;
+    }
+    @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+
+        .aui-border-r:after,
+
+        .aui-border-l:before {
+
+            -webkit-transform: scaleX(0.2);
+
+                    transform: scaleX(0.2);
+
+        }
+
+        .aui-border-t:before,
+
+        .aui-border-b:after  {
+
+            -webkit-transform: scaleY(0.2);
+
+                    transform: scaleY(0.2);
+
+        }
+
+    }
+
+	.aui-slide-node img {
+            display: block;
+            width: 100%;
+        }
+        @media only screen and (min-width: 400px) {
+            body {
+                /*max-width: 50%;*/
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body style="background:#043E92;">
+
+    <!-- icafe 首页 -->
+	<!--<section class="aui-card-list banner">
+        <div class="aui-card-list-content ">
+            <div class="aui-list-item" >
+                <img src="../../image/icafe_index.png"/>
+            </div>
+        </div>
+    <section>-->
+    <div id="aui-slide" class="aui-content banner">
+        <div class="aui-slide-wrap" id="banner" >
+		        <img src="../../image/icafe_index.png" data-echo="../../image/icafe_index.png"/>
+        </div>
+        <div class="aui-slide-page-wrap"><!--分页容器--></div>
+    </div>
+    <!-- banner tpl -->
+	<script type="text/x-dot-template" id="banner-tpl">
+	    {{for(var i in it){}}
+	    <div class="aui-slide-node" onclick="openBanner('{{=it[i].id}}')">
+	        <img src="{{=it[i].iCafePhoto}}"  data-echo="{{=it[i].iCafePhoto}}"/>
+	    </div>
+	    {{ } }}
+	</script>
+	 <!-- grid -->
+    <section class="aui-content classify" >
+        <div class="classify-item-wrap">
+            <div class="aui-row">
+                <div class="aui-col-xs-4 aui-border-r " onclick="openUrl('/html/icafe/yhxx.html')">
+                    <img src="../../image/icafe/1.png">
+                </div>
+                <div class="aui-col-xs-4 aui-border-r" onclick="openUrl('/html/icafe/cyzx_.html')">
+                    <img src="../../image/icafe/2.png">
+                </div>
+                <div class="aui-col-xs-4 " onclick="openUrl('/html/icafe/qdfw.html')">
+                    <img src="../../image/icafe/3.png">
+                </div>
+            </div>
+            <div class="aui-row">
+                <div class="aui-col-xs-4 aui-border-r aui-border-t" onclick="openUrl('/html/icafe/qdyj.html')">
+                    <img src="../../image/icafe/4.png">
+                </div>
+                <div class="aui-col-xs-4 aui-border-r aui-border-t" onclick="openUrl('/html/icafe/zxpx.html')">
+                    <img src="../../image/icafe/5.png">
+                </div>
+                <div class="aui-col-xs-4 aui-border-t">
+                    <img src="../../image/icafe/6.png">
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/aui-slide.js"></script>
+<script type="text/javascript" src="../../script/echo.min.js"></script>
+<script type="text/javascript">
+	var toast = new auiToast();
+    var token=localStorage.getItem("token");
+    var code = getQueryString('code');
+    var openid = localStorage.getItem("jingyinghuiOpenid");
+    $(function(){
+    	//从公众号菜单进来，csp页面要保存字段roleid为1，注册的时候从本地获取
+    	localStorage.setItem("roleid",3);
+//      toast.loading({
+//          title:"加载中",
+//          duration:2000
+//      },function(ret){
+//      });
+        checkUserInfo();//校验登陆
+        getBannerData();//获取首页banner
+    })
+    // 获取首页焦点
+    function getBannerData(){
+        $.ajax({
+            url:INTEL_API_URL_B+"/activities/getiCafe",
+            type: 'GET',
+            success:function(ret) {
+                if(ret&&ret.length>0){
+//                     alert("banner:"+JSON.stringify(ret));
+                    var bannerTpl = $("#banner-tpl").html();
+                    var tempFn = doT.template(bannerTpl);
+                    $("#banner").html("");
+                    $("#banner").html(tempFn(ret));
+                    var slide = new auiSlide({
+                        container:document.getElementById("aui-slide"),
+                        "height":220,
+                        "speed":300,
+                        "autoPlay": 3000, //自动播放
+                        "pageShow":true,
+                        "pageStyle":'dot',
+                        "loop":true,
+                        'dotPosition':'center'
+                    })
+                    echo.init({
+                        offset: 100,
+                        throttle: 250
+                    });
+                }
+                // console.log("banner："+JSON.stringify(ret));
+            },
+            error:function(ret) {
+            },
+            headers:{
+                'Content-type':'application/json',
+                'authorization':token
+            }
+        });
+    }
+    function checkUserInfo(){
+//      alert('code:'+code);
+        if(code){localStorage.setItem("code",code)}
+        var datas={};
+        if(openid){
+        	datas.openid=openid;
+        	//bvar部分rolaid固定为2，校验登陆也要传
+        	datas.roleid=3;
+        	getDatas(datas);
+        }else if(code){
+    		datas.code=code;
+        	if(token){
+        		datas.token=token;
+        	}
+        	//bvar部分rolaid固定为1
+    		datas.roleid=3;
+        	getDatas(datas);
+        }
+    }
+    function getDatas(datas){
+//  	alert('提交的数据：'+JSON.stringify(datas));
+    	 // 从旧版跳转，获取openid，验证是否登录
+            $.ajax({
+                url:INTEL_API_URL_B+"/users/wxlogin",
+                type:'POST',
+                data:datas,
+                success:function(ret){
+                	toast.hide();
+//                  alert('校验登陆返回的数据:'+JSON.stringify(ret));
+                    if(ret){
+                        if(ret.success == false && (ret.code==4||ret.code==0)){
+                        	//返回失败的时候，也保存openid
+                        	if(!openid&&ret.user.openid){
+                        		localStorage.setItem("jingyinghuiOpenid",ret.openid); //用户id
+                    		}
+                            setTimeout(function(){
+                                window.location.href = BASE_URL+"/html/register/icafe_register.html?code="+code;
+                            }, 300)
+                        }else if(ret.success == false&&(ret.code==2||ret.code==3||ret.code==4)){
+                        	if(!openid&&ret.openid){
+                        		localStorage.setItem("jingyinghuiOpenid",ret.openid); //用户id
+                    		}
+                        	dialog.alert({
+				                title:"提示消息",
+				                msg:ret.message,
+				                buttons:['确定']
+				            },function(ret){
+				            	window.history.go(-1);
+				            })
+				            return;
+                        }
+                        //如果本地没有token，并且返回有token，就从返回的token取并保存到本地
+                    	if(ret.user.accessTokens[0].id){
+                    		localStorage.setItem("token",ret.user.accessTokens[0].id);//token
+                    	}
+						if(ret.success==true){
+							localStorage.setItem("userid",ret.user.id); //用户id
+							if(!openid){
+								localStorage.setItem("jingyinghuiOpenid",ret.user.openid); //用户id
+							}
+		                    localStorage.setItem("user_contact",ret.user.contact); //联系人姓名
+		                    localStorage.setItem("user_companyname",ret.user.companyname);//公司
+		                    localStorage.setItem("user_email",ret.user.email);//email
+		                    localStorage.setItem("user_mobile",ret.user.mobile);//手机
+						}
+						getBannerData();//获取首页banner
+                    }
+                },
+                error:function(err){
+//                  alert('校验返回的错误：'+JSON.stringify(err));
+                    toast.hide();
+                }
+            })
+    }
+	// 获取地址栏参数
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+    function openUrl(url){
+    	if(!localStorage.getItem('token')){
+			window.location.href = BASE_URL+'/html/register/icafe_register.html';
+			return;
+		}
+        window.location.href = BASE_URL+url;
+    }
+    // 打开banner
+    function openBanner(id){
+         zhuge.track("微信_icafe_轮播");
+        window.location.href = BASE_URL+"/html/icafe/event_detail_frm.html"+"?id="+id;
+    }
+</script>
+</html

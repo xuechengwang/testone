@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/color.css" />
+    <title class="aui-text-center">样机借测</title>
+    <script type="text/javascript">
+       // 诸葛布点
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function(b) {
+            return function() {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function(b, x) {
+                if (!document.getElementById("zhuge-js")) {
+                    var a = document.createElement("script");
+                    var verDate = new Date();
+                    var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+                    a.type = "text/javascript";
+                    a.id = "zhuge-js";
+                    a.async = !0;
+                    a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                    var c = document.getElementsByTagName("script")[0];
+                    c.parentNode.insertBefore(a, c);
+                    window.zhuge._init(b, x)
+                }
+            };
+            window.zhuge.load('1cc4eb544aa548698b0abf171c2ad6f5');var token =localStorage.getItem('token');
+            if(token){
+                zhuge.identify(token,{
+                    "来源":"微信"
+                });
+            }
+    </script>
+    <style>
+        .height-tag{
+            height: 1.8rem;
+            line-height: 1.8rem;
+            border-bottom: 1px solid #dddddd;
+        }
+        .input-style{
+            position: relative;
+            top: 0.4rem;
+        }
+        pre{
+            white-space: pre-wrap;
+            overflow-x:auto;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- 我要借样机_案例页面-->
+
+    <section class="aui-content aui-text-center">
+        <div class="aui-content aui-margin-b-15">
+            <div class="aui-crad-list" style="margin-top:10rem;">
+                <div class="aui-crad-list-header aui-text-center"><i class="aui-iconfont aui-icon-gear aui-font-size-14"></i></div>
+                <div class="aui-crad-list-footer aui-text-center aui-font-size-12 ">正在建设中，敬请期待…</div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+<script type="text/x-dot-template" id="list-tpl">
+    <div class="aui-text-center mr-top-30">案例名称</div>
+    <div class="aui-content-padded">
+        <pre class="text-494949">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.</pre>
+    </div>
+</script>
+
+<script type="text/javascript" src="../../script/common.js"></script>
+
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+
+<script type="text/javascript" src="../../script/doT.min.js"></script>
+
+<script type="text/javascript" src="../../script/aui-toast.js"></script>
+
+<script type="text/javascript">
+</script>
+</html>
